@@ -4,14 +4,30 @@ import './App.css';
 
 const App = () => {
   return (
-    <div className="App">
-      <ul>
+    <div>
+      <Header></Header>
+      <Tecnoliges></Tecnoliges>
+    </div>
+  )
+}
+
+const Tecnoliges = () => {
+  return (
+    <ul>
         <li>css</li>
         <li>html</li>
         <li>js</li>
         <li>react</li>
-      </ul>
-      Simple html
+    </ul>
+  )
+}
+
+const Header = () => {
+  return (
+    <div>
+      <a>Home</a>
+      <a>News</a>
+      <a>Messages</a>
     </div>
   )
 }
