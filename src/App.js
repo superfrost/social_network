@@ -2,35 +2,18 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Tecnologies from './Tecnologies'
+import Header from './Header'
+
 const App = () => {
   return (
     <div>
       <Header></Header>
-      <Tecnoliges></Tecnoliges>
+      <Tecnologies></Tecnologies>
     </div>
   )
 }
 
-const Tecnoliges = () => {
-  return (
-    <ul>
-        <li>css</li>
-        <li>html</li>
-        <li>js</li>
-        <li>react</li>
-    </ul>
-  )
-}
-
-const Header = () => {
-  return (
-    <div>
-      <a>Home</a>
-      <a>News</a>
-      <a>Messages</a>
-    </div>
-  )
-}
 // function App() {
 //   return (
 //     <div className="App">
