@@ -1,32 +1,29 @@
 .app-wrapper {
-  margin: 0 auto;
+  margin: 10px auto;
   display: grid;
-
+  /* padding: 10px; */
   grid-template-areas: 
   "head head"
   "na co";
   grid-template-rows: 100px 1fr;
-  grid-template-columns: 100px 10fr;
-
+  grid-template-columns: 100px 1fr;
 }
 
 .header {
   background-color: aqua;
   grid-area: head;
   height: 100px;
-
 }
+
 .header img {
   height: 100px;
   width: auto;
-  
 }
 
 .nav {
   background-color: burlywood;
   grid-area: na;
   width: 100px;
-
 }
 
 .content {
@@ -44,6 +41,7 @@
   width: 200px;
   height: auto;
 }
+
 /* .App {
   text-align: center;
 }
