@@ -1,8 +1,8 @@
 import React from "react";
 import styless from "./Navbar.module.css";
 
-console.log(styless)
-console.log(`${styless.item} ${styless.active}`)
+//console.log(styless)
+//console.log(`${styless.item} ${styless.active}`)
 
 const Navbar = () => {
   return (
@@ -25,4 +25,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
 export default Navbar;

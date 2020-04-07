@@ -1,5 +1,9 @@
 .app-wrapper {
+  background-color:  darkslategrey;
   margin: 10px auto;
+  width: 720px;
+  position: relative;
+
   display: grid;
   /* padding: 10px; */
   grid-template-areas: 
