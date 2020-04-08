@@ -1,14 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
 .app-wrapper {
-  background-color:  darkslategrey;
-  margin: 10px auto;
-  width: 720px;
+  margin: auto;
+  width: 700px;
   position: relative;
 
   display: grid;
-  /* padding: 10px; */
   grid-template-areas: 
   "head head"
   "na co";
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 80px 1fr;
   grid-template-columns: 100px 1fr;
 }

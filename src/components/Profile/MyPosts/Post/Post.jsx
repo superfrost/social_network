@@ -1,7 +1,7 @@
 import React from 'react'
 import styless from './Post.module.css'
 
-const Post = () => {
+const Post = (props) => {
     return (
         <div className={styless.item}>
             <div className={styless.logo_container}>
@@ -19,10 +19,10 @@ const Post = () => {
                     Somebody_Location
                 </div>
                 <div className={styless.post_owner_text}>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium at, nam mollitia, tenetur eveniet praesentium esse deleniti error eum, earum possimus exercitationem magnam. Vel fugiat obcaecati quasi, cupiditate eligendi vero.
+                    {props.message}
                 </div>
                 <div className={styless.button_container}>
-                    <button className={styless.button}>👍</button>
+                    <button className={styless.button}>💕{props.like_count}</button>
                     <button className={styless.button}>Share</button>
                 </div>
             </div>

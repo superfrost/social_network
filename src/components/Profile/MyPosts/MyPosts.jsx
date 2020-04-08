@@ -2,16 +2,16 @@ import React from 'react'
 import styless from './MyPosts.module.css'
 import Post from './Post/Post'
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+  debugger;
   return (
     <div>
-      My posts
-      <div>new post</div>
+      <div>
+        All posts
+      </div>
       <div className={styless.posts}>
-        <Post></Post>
-        <Post></Post>
-        <Post></Post>
-        <Post></Post>
+        <Post message="Hi it's me !!!" like_count="17"></Post>
+        <Post message="Where are you?" like_count="4"></Post>
       </div>
     </div>
   )

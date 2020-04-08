@@ -2,7 +2,7 @@ import React from "react";
 import styless from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div className={styless.content}>
       <div>
@@ -25,10 +25,14 @@ const Profile = () => {
             User_name
           </div>
           <div className={styless.my_event_text}>
-            <input type="text" placeholder="Enter your event..."></input>
+            <textarea placeholder="Enter your event..."></textarea>
+          </div>
+          <div>
+            <button className={styless.send_button} type='submit'>Send</button>
           </div>
         </div>
       </div>
+      
       <MyPosts></MyPosts>
     </div>
   );
