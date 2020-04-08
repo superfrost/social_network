@@ -5,9 +5,19 @@
 }
 
 .item {
+    margin: 4px;
+    color: white;
+
+}
+
+.item a {
     color: white;
 }
 
-.item.active {
+.item a:hover {
+    color: gold;
+}
+
+.active {
     color: gold;
 }

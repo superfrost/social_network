@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = (props) => {
   return (
-    <div className={styless.content}>
+    <div>
       <div>
         <img
           className={styless.back_img}

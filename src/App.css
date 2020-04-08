@@ -14,3 +14,8 @@
   grid-template-rows: 80px 1fr;
   grid-template-columns: 100px 1fr;
 }
+
+.app-wrapper-content {
+    background-color: rgb(83, 49, 161);
+    grid-area: co;
+}
