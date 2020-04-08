@@ -1,19 +1,55 @@
 .content {
   background-color: rgb(45, 210, 30);
   grid-area: co;
+  background-image: linear-gradient(red, blue);
 
 }
 
 .content .back_img {
   width: auto;
-  height: 300px;
+  height: 200px;
 }
 
-.content .ava {
-  width: 150px;
-  height: auto;
+.my_profile_container {
+  display: flex;
+  margin: 5px 5px 5px 5px;
+}
+
+.my_logo_container {
+
+}
+
+.ava {
+  width: 100px;
+  height: 100px;
   border-radius: 100%;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
+  border: solid black 1px;
+}
+
+.my_event_container {
+  margin-left: 5px;
+  /* border: solid; */
+  width: 100%;
+}
+
+.my_event_user_name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.my_event_text {
+  width: inherit;
+  
+}
+
+.my_event_text input {
+  padding-top: 10px;
+  background-color: aquamarine;
+  border: solid gray 1px;
+  /* justify-self: flex-start;
+  align-content: stretch; */
+  border-radius: 10px;
+  /* margin: 0 0 0 0; */
+  width: inherit;
+  height: 80px;
 }

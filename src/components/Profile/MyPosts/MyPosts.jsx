@@ -10,6 +10,8 @@ const MyPosts = () => {
       <div className={styless.posts}>
         <Post></Post>
         <Post></Post>
+        <Post></Post>
+        <Post></Post>
       </div>
     </div>
   )

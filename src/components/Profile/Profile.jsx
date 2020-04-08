@@ -9,19 +9,27 @@ const Profile = () => {
         <img
           className={styless.back_img}
           alt="background"
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.flightnetwork.com%2Fworlds-best-beaches%2Fwp-content%2Fuploads%2F2018%2F11%2Fheader-top100-beach25.jpg&f=1&nofb=1"
+          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.zicasso.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Ffull_2048custom_zictheme_breakpoint_standard_1x%2Fpublic%2Fheaderimages%2Ftours%2FSeychelles-Beautiful-Beach-Pano.jpg%3Ftimestamp%3D1382001009&f=1&nofb=1"
           />
       </div>
-      <div>
-        <img
-          className={styless.ava}
-          alt="avatar"
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2F9akSG3RnA1s%2Fmaxresdefault.jpg&f=1&nofb=1"
-        />
-        ava + description
+      <div className={styless.my_profile_container}>
+        <div className={styless.my_logo_container}>
+          <img
+            className={styless.ava}
+            alt="avatar"
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Favatarfiles.alphacoders.com%2F114%2F114469.png&f=1&nofb=1"
+          />
+        </div>
+        <div className={styless.my_event_container}>
+          <div className={styless.my_event_user_name}>
+            User_name
+          </div>
+          <div className={styless.my_event_text}>
+            <input type="text" placeholder="Enter your event..."></input>
+          </div>
+        </div>
       </div>
       <MyPosts></MyPosts>
-      Form to send
     </div>
   );
 };
