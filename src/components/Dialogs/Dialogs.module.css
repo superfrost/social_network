@@ -1,0 +1,36 @@
+.dialog_container {
+    display: grid;
+    grid-template-columns: 3fr 10fr;
+    margin: 5px;
+}
+
+.dialog_item {
+    border: solid gold 2px;
+    color: white;
+}
+
+.dialog_to_person {
+    border: solid green 2px;
+    margin: 5px;
+    
+}
+
+.person_link {
+    text-decoration: none;
+    color: white;
+}
+
+.person_link_active {
+    color: gold;
+}
+
+.messages {
+    border: solid palevioletred 2px;
+    color: white;
+}
+
+.one_message {
+    border: solid black 2px;
+    color: white;
+    margin: 5px;
+}

@@ -6,18 +6,19 @@
 
 .item {
     margin: 4px;
-    color: white;
 
 }
 
 .item a {
+    text-decoration: none;
     color: white;
 }
 
 .item a:hover {
-    color: gold;
+    color: chartreuse;
 }
 
-.active {
+
+.item .active {
     color: gold;
 }

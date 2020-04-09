@@ -1,5 +1,6 @@
 import React from "react";
 import styless from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
 
 //console.log(styless)
 //console.log(`${styless.item} ${styless.active}`)
@@ -7,20 +8,20 @@ import styless from "./Navbar.module.css";
 const Navbar = () => {
   return (
     <nav className={styless.nav}>
-      <div className={`${styless.item} ${styless.active}`}>
-        <a href="/profile">Profile</a>
+      <div className={styless.item}>
+        <NavLink to="/profile" activeClassName={styless.active}>Profile</NavLink>
       </div>
       <div className={styless.item}>
-        <a href="/dialogs">Massages</a>
+        <NavLink to="/dialogs" activeClassName={styless.active}>Massages</NavLink>
       </div>
       <div className={styless.item}>
-        <a href="/news">News</a>
+        <NavLink to="/news" activeClassName={styless.active}>News</NavLink>
       </div>
       <div className={styless.item}>
-        <a href="/music">Music</a>
+        <NavLink to="/music" activeClassName={styless.active}>Music</NavLink>
       </div>
       <div className={styless.item}>
-        <a href="/settings">Settings</a>
+        <NavLink to="/settings" activeClassName={styless.active}>Settings</NavLink>
       </div>
     </nav>
   );
