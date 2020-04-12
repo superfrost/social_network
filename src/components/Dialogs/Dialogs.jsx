@@ -33,20 +33,20 @@ let messageData = [
     {id: 4, message: "Ok. See you 😊"}
 ]
 
+let dialogElements = dialogsData
+    .map(dialog => (<DialogToPerson person_name={dialog.name} person_id={dialog.id}/>))
+
+let messageElements = messageData
+    .map( message => (<OneMessage one_message_text={message.message}/>))
+
 const Dialogs = (props) => {
     return (
         <div className={styless.dialog_container}>
             <div className={styless.dialog_item}>
-                <DialogToPerson person_name={dialogsData[0].name} person_id={dialogsData[0].id}/>
-                <DialogToPerson person_name={dialogsData[1].name} person_id={dialogsData[1].id}/>
-                <DialogToPerson person_name={dialogsData[2].name} person_id={dialogsData[2].id}/>
-                <DialogToPerson person_name={dialogsData[3].name} person_id={dialogsData[3].id}/>
+                {dialogElements}
             </div>
             <div className={styless.messages}>
-                <OneMessage one_message_text={messageData[0].message}/>
-                <OneMessage one_message_text={messageData[1].message}/>
-                <OneMessage one_message_text={messageData[2].message}/>
-                <OneMessage one_message_text={messageData[3].message}/>
+                {messageElements}
             </div>
         </div>
     )
