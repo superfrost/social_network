@@ -23,6 +23,12 @@ const Navbar = () => {
       <div className={styless.item}>
         <NavLink to="/settings" activeClassName={styless.active}>Settings</NavLink>
       </div>
+      <div className="Friends">
+        Friends
+        <div>
+          Photo
+        </div>
+      </div>
     </nav>
   );
 };
