@@ -2,13 +2,13 @@ import React from "react";
 import styless from "./../Dialogs.module.css";
 
 const OneMessage = (props) => {
-  let className = "1";
-  props.state.person_id == 1
-    ? (className = styless.one_message_my)
-    : (className = styless.one_message);
+  let clsName = "1";
+  props.state.person_id === 1
+    ? (clsName = styless.one_message_my)
+    : (clsName = styless.one_message);
 
   return (
-    <div className={className}>
+    <div className={clsName}>
       <div className={styless.one_message_content}>
         <img
           className={styless.message_avatar}

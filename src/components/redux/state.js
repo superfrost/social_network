@@ -82,4 +82,16 @@ let state = {
     }
 }
 
+export let addNewPost = (postMessage) => {
+    debugger;
+    let newPost = {
+        id: 17,
+        person_id: 1,
+        date: '14-04-2020 21:00',
+        message: postMessage,
+        like_count: 0
+    };
+    state.profilePage.posts.push(newPost);
+}
+
 export default state

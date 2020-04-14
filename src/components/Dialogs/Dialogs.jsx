@@ -10,7 +10,6 @@ let addNewAlert = () => {
 }
 
 const Dialogs = (props) => {
-    let className= '1';
     let dialogElements = props.state.dialogsData.map(dialog => (<DialogItem state={dialog}/>))
     let messageElements = props.state.messageData.map( message => {
         let src = props.state.friends[message.person_id - 1].photoSrc;
