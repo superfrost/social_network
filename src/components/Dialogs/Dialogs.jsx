@@ -4,9 +4,11 @@ import DialogItem from './DialogItem/DialogItem'
 import OneMessage from './Message/Message'
 
 const Dialogs = (props) => {
-    //console.log('Dialogs props:', props.dialogsData);
-    let dialogElements = props.state.dialogsData.map(dialog => (<DialogItem person_name={dialog.name} person_id={dialog.id}/>))
-    let messageElements = props.state.messageData.map( message => (<OneMessage one_message_text={message.message}/>))
+    let className= '1';
+    let dialogElements = props.state.dialogsData.map(dialog => (<DialogItem state={dialog}/>))
+    let messageElements = props.state.messageData.map( message => {
+        let src = props.state.friends[message.person_id - 1].photoSrc;
+        return <OneMessage className={styless.messages} state={message} src={src}/>})
 
     return (
         <div className={styless.dialog_container}>

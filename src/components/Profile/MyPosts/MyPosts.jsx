@@ -4,8 +4,13 @@ import Post from './Post/Post'
 
 
 const MyPosts = (props) => {
+  //let posterName = props.state.friends
   
-  let postsElements = props.state.posts.map(post => <Post message={post.message} like_count={post.like_count}/>)
+  let postsElements = props.state.posts.map(post => {
+    let posterName = props.state.friends[post.person_id - 1].name;
+    let photoSrc = props.state.friends[post.person_id - 1].photoSrc;
+      return <Post state={post} name={posterName} photoSrc={photoSrc}/>
+  })
 
   return (
     <div>

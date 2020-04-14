@@ -1,0 +1,10 @@
+.friends {
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+.friendAvatar {
+    width: 50px;
+    border-radius: 50%;
+}
