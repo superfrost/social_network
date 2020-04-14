@@ -15,7 +15,9 @@ const OneMessage = (props) => {
           alt="friend_avatar"
           src={props.src}
         />
-        <div className={styless.time}>Time</div>
+        <div className={styless.time}>
+          {props.state.date}
+        </div>
       </div>
       {props.state.message}
     </div>

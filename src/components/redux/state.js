@@ -1,3 +1,10 @@
+let myProfile = {
+    my_id: 11,
+    avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NylsCxMY8dDSzJ_hEQtC0gAAAA%26pid%3DApi&f=1',
+    name:'Terminator',
+    education: "PhD",
+    work: 'DataScientist'}
+
 let dialogsData = [
     {id: 1, name: 'Anton', photoSrc: 'https://www.famousbirthdays.com/faces/clooney-george-image.jpg'},
     {id: 2, name: 'Lera', photoSrc: 'https://www.famousbirthdays.com/headshots/zoe-saldana-5.jpg'},
@@ -10,22 +17,22 @@ let dialogsData = [
 ]
 
 let messageData = [
-    {id: 1, person_id: 2, message: "Hi. Realy cool weather! Do you wanna go to park?"},
-    {id: 2, person_id: 1, message: "Hi it's true. Meat me near my house in 15."},
-    {id: 3, person_id: 2, message: "Ok I'll be there!"},
-    {id: 4, person_id: 1, message: "Ok. See you 😊"},
-    {id: 5, person_id: 2, message: "Love you 💖💖💖"},
-    {id: 6, person_id: 1, message: "Me too 💋💋💋💋"},
-    {id: 7, person_id: 3, message: "He man wat's up"},
-    {id: 8, person_id: 1, message: "Cool dude!"},
-    {id: 9, person_id: 3, message: "Do you wana play Mortal Combat?"},
-    {id: 10, person_id: 1, message: "Eeeeee shure"},
-    {id: 11, person_id: 7, message: "You have 5 for yout test. Great job!!!"},
-    {id: 12, person_id: 1, message: "Ok thks"},
-    {id: 13, person_id: 5, message: "wana get some party"},
-    {id: 14, person_id: 1, message: "not today... I'm busy"},
-    {id: 15, person_id: 5, message: "ok no problem"},
-    {id: 16, person_id: 6, message: "Dude where are you?????"},
+    {id: 1, person_id: 2, date: '10-04-2020 18:52', message: "Hi. Realy cool weather! Do you wanna go to park?"},
+    {id: 2, person_id: 1, date: '09-04-2020 17:37', message: "Hi it's true. Meat me near my house in 15."},
+    {id: 3, person_id: 2, date: '08-04-2020 16:22', message: "Ok I'll be there!"},
+    {id: 4, person_id: 1, date: '07-04-2020 15:17', message: "Ok. See you 😊"},
+    {id: 5, person_id: 2, date: '06-04-2020 14:49', message: "Love you 💖💖💖"},
+    {id: 6, person_id: 1, date: '05-04-2020 13:56', message: "Me too 💋💋💋💋"},
+    {id: 7, person_id: 3, date: '04-04-2020 12:14', message: "He man wat's up"},
+    {id: 8, person_id: 1, date: '03-04-2020 11:14', message: "Cool dude!"},
+    {id: 9, person_id: 3, date: '02-04-2020 10:02', message: "Do you wana play Mortal Combat?"},
+    {id: 10, person_id: 1, date: '01-04-2020 09:05', message: "Eeeeee shure"},
+    {id: 11, person_id: 7, date: '31-03-2020 18:21', message: "You have 5 for yout test. Great job!!!"},
+    {id: 12, person_id: 1, date: '30-03-2020 17:47', message: "Ok thks"},
+    {id: 13, person_id: 5, date: '29-03-2020 16:22', message: "wana get some party"},
+    {id: 14, person_id: 1, date: '28-03-2020 15:12', message: "not today... I'm busy"},
+    {id: 15, person_id: 5, date: '27-03-2020 14:35', message: "ok no problem"},
+    {id: 16, person_id: 6, date: '26-03-2020 13:21', message: "Dude where are you?????"},
 ]
 
 let posts = [
@@ -44,6 +51,7 @@ let posts = [
     {id: 13, person_id: 7, date: '03-03-2020 15:00', message: "Yeah, I think it's a good environment for learning English.", like_count: 56},
     {id: 14, person_id: 1, date: '02-03-2020 11:10', message: "Nobody questions who built the pyramids in Mexico.", like_count: 73},
     {id: 15, person_id: 8, date: '01-03-2020 13:40', message: "When he encountered maize for the first time, he thought it incredibly corny.", like_count: 5},
+    {id: 16, person_id: 6, date: '20-02-2020 13:40', message: "Hey Lera", like_count: 34},
 ]
 
 let friends = [
@@ -61,7 +69,8 @@ let friends = [
 let state = {
     profilePage: {
         posts,
-        friends
+        friends,
+        myProfile
     },
     messagePage: {
         messageData,
