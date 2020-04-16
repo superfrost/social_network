@@ -13,7 +13,7 @@ const Navbar = (props) => {
         <NavLink to="/profile" activeClassName={styless.active}>Profile</NavLink>
       </div>
       <div className={styless.item}>
-        <NavLink to="/dialogs" activeClassName={styless.active}>Massages</NavLink>
+        <NavLink to="/dialogs" activeClassName={styless.active}>Messages</NavLink>
       </div>
       <div className={styless.item}>
         <NavLink to="/news" activeClassName={styless.active}>News</NavLink>

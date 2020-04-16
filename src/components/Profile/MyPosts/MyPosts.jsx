@@ -10,15 +10,19 @@ const MyPosts = (props) => {
     let posterName = props.state.friends[post.person_id - 1].name;
     let photoSrc = props.state.friends[post.person_id - 1].photoSrc;
       return <Post state={post} name={posterName} photoSrc={photoSrc}/>
-  })
-
+  });
+  // Reverse posts
+  let postsElementsReverse = postsElements.slice().reverse();
+  //Add some logic with "UNSHIFT" insted of reverse
+  
+  
   return (
     <div>
       <div>
         All posts
       </div>
       <div className={styless.posts}>
-        {postsElements}
+        {postsElementsReverse}
       </div>
     </div>
   )

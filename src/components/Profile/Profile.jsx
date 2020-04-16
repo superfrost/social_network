@@ -15,7 +15,11 @@ const Profile = (props) => {
         />
       </div>
       <MyProfile state={props.state.myProfile}/>
-      <CreatePost addNewPost={props.addNewPost}/>
+      <CreatePost 
+        addNewPost={props.addNewPost} 
+        state={props.state.newPostText}
+        newPostTextOnChenge={props.newPostTextOnChenge}
+      />
       <MyPosts state={props.state}/>
     </div>
   );

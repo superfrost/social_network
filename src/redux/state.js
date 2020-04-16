@@ -1,3 +1,5 @@
+import { rerenderInttireTree } from "../render"
+
 let myProfile = {
     my_id: 11,
     avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NylsCxMY8dDSzJ_hEQtC0gAAAA%26pid%3DApi&f=1',
@@ -70,7 +72,8 @@ let state = {
     profilePage: {
         posts,
         friends,
-        myProfile
+        myProfile,
+        newPostText: "Hi it's newPostTexttt"
     },
     messagePage: {
         messageData,
@@ -82,16 +85,40 @@ let state = {
     }
 }
 
+export let newPostTextOnChenge = (text) => {
+    state.profilePage.newPostText = text;
+    rerenderInttireTree(state);
+}
+
 export let addNewPost = (postMessage) => {
     debugger;
+    let time = new Date()
+    let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
+    //let timeNow = `${time}`
     let newPost = {
         id: 17,
         person_id: 1,
-        date: '14-04-2020 21:00',
+        date: timeNow,
         message: postMessage,
         like_count: 0
     };
     state.profilePage.posts.push(newPost);
+    rerenderInttireTree(state);
 }
+
+export let addNewMessage = (message) => {
+    debugger;
+    let time = new Date()
+    let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
+    
+    let newMessage = {
+        id: 17, 
+        person_id: 1, 
+        date: timeNow, 
+        message: message
+    };
+    state.messagePage.messageData.push(newMessage);
+    rerenderInttireTree(state);
+};
 
 export default state
