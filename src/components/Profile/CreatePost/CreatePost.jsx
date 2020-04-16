@@ -6,9 +6,7 @@ const CreatePost = (props) => {
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    let text = newPostElement.current.value;
-    props.addNewPost(text);
-    props.newPostTextOnChenge('');
+    props.addNewPost();
   };
 
   let onChangeTextarea = () => {

@@ -22,6 +22,7 @@ const App = (props) => {
           render={() => <Dialogs 
             state={props.state.messagePage}
             addNewMessage={props.addNewMessage}
+            addNewMessageOnChange={props.addNewMessageOnChange}
           />}
         />
         <Route

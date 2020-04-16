@@ -4,18 +4,23 @@ import DialogItem from "./DialogItem/DialogItem";
 import OneMessage from "./Message/Message";
 
 const Dialogs = (props) => {
+
+  let newMessageReactRef = React.createRef();
   
-  let newReactRef = React.createRef();
   let addMessage = () => {
-    let text = newReactRef.current.value;
-    props.addNewMessage(text);
-    newReactRef.current.value = "";
+    props.addNewMessage();
   };
 
+  let addMessageOnChange = () => {
+    let text = newMessageReactRef.current.value;
+    props.addNewMessageOnChange(text);
+  };
+  console.log(props.state.messageData);
   let dialogElements = props.state.dialogsData.map((dialog) => (
     <DialogItem state={dialog} />
   ));
-  let messageElements = props.state.messageData.map((message) => {
+
+  let messageElements = props.state.messageData.map( message => {
     let src = props.state.friends[message.person_id - 1].photoSrc;
     return (
       <OneMessage className={styless.messages} state={message} src={src} />
@@ -24,21 +29,23 @@ const Dialogs = (props) => {
 
   let messageElementsReverse = messageElements.slice().reverse()
 
-
-
   return (
     <div className={styless.dialog_container}>
-      <div className={styless.dialog_item}>{dialogElements}</div>
+      <div className={styless.dialog_item}>
+        {dialogElements}
+      </div>
       <div className={styless.messages}>
         <form>
           <textarea
-            ref={newReactRef}
+            ref={newMessageReactRef}
+            onChange={addMessageOnChange}
             className={styless.message_textarea_send}
-            name=""
-            id=""
-          ></textarea>
+            name="newMessageArea"
+            id="newMessageArea"
+            value={props.state.newMessageText}
+          />
           <br />
-          <button onClick={addMessage} type="submit">
+          <button onClick={addMessage} type="submit" className={styless.newMessageButton}>
             Send
           </button>
         </form>

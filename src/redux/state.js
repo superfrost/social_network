@@ -1,4 +1,6 @@
-import { rerenderInttireTree } from "../render"
+let rerenderInttireTree = () => {
+    console.log('State changed');
+}
 
 let myProfile = {
     my_id: 11,
@@ -78,20 +80,29 @@ let state = {
     messagePage: {
         messageData,
         dialogsData,
-        friends
+        friends,
+        newMessageText: "New message"
     },
     navbar: {
         friends
     }
 }
 
-export let newPostTextOnChenge = (text) => {
+export const newPostTextOnChenge = (text) => {
     state.profilePage.newPostText = text;
     rerenderInttireTree(state);
 }
 
-export let addNewPost = (postMessage) => {
-    debugger;
+export const addNewMessageOnChange = (text) => {
+    //debugger;
+    state.messagePage.newMessageText = text;
+    rerenderInttireTree(state);
+}
+
+window.state = state
+
+export const addNewPost = () => {
+    //debugger;
     let time = new Date()
     let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
     //let timeNow = `${time}`
@@ -99,15 +110,16 @@ export let addNewPost = (postMessage) => {
         id: 17,
         person_id: 1,
         date: timeNow,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         like_count: 0
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
     rerenderInttireTree(state);
 }
 
-export let addNewMessage = (message) => {
-    debugger;
+export const addNewMessage = () => {
+    //debugger;
     let time = new Date()
     let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
     
@@ -115,10 +127,15 @@ export let addNewMessage = (message) => {
         id: 17, 
         person_id: 1, 
         date: timeNow, 
-        message: message
+        message: state.messagePage.newMessageText
     };
     state.messagePage.messageData.push(newMessage);
+    state.messagePage.messageData = '';
     rerenderInttireTree(state);
 };
+
+export const subscribe = (observer) => {
+    rerenderInttireTree = observer;
+}
 
 export default state
