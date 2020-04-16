@@ -3,31 +3,29 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from './serviceWorker';
 import "./index.css";
 import App from "./App";
-import state, { subscribe } from './redux/state'
-import { addNewPost, newPostTextOnChenge, addNewMessageOnChange } from "./redux/state";
 import { BrowserRouter } from "react-router-dom";
-import { addNewMessage } from "./redux/state";
+import store from './redux/state'
 
-
-let rerenderInttireTree = (state) => {
+let rerenderIntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
         <App
           state={state}
-          addNewPost={addNewPost}
-          addNewMessage={addNewMessage}
-          newPostTextOnChenge={newPostTextOnChenge}
-          addNewMessageOnChange={addNewMessageOnChange}
+          addNewPost={store.addNewPost.bind(store)}
+          addNewMessage={store.addNewMessage.bind(store)}
+          newPostTextOnChenge={store.newPostTextOnChenge.bind(store)}
+          newMessageTextOnChange={store.newMessageTextOnChange.bind(store)}
         />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
   );
 };
+console.log('index.js store', store.getState());
 
-rerenderInttireTree(state);
+rerenderIntireTree(store.getState());
 
-subscribe(rerenderInttireTree);
+store.subscribe(rerenderIntireTree);
 
 serviceWorker.unregister();

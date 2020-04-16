@@ -4,16 +4,16 @@ import DialogItem from "./DialogItem/DialogItem";
 import OneMessage from "./Message/Message";
 
 const Dialogs = (props) => {
-
+  //debugger;
   let newMessageReactRef = React.createRef();
   
   let addMessage = () => {
     props.addNewMessage();
   };
 
-  let addMessageOnChange = () => {
+  let OnChangeTextInTextarea = () => {
     let text = newMessageReactRef.current.value;
-    props.addNewMessageOnChange(text);
+    props.newMessageTextOnChange(text);
   };
   console.log(props.state.messageData);
   let dialogElements = props.state.dialogsData.map((dialog) => (
@@ -38,14 +38,14 @@ const Dialogs = (props) => {
         <form>
           <textarea
             ref={newMessageReactRef}
-            onChange={addMessageOnChange}
+            onChange={OnChangeTextInTextarea}
             className={styless.message_textarea_send}
             name="newMessageArea"
             id="newMessageArea"
             value={props.state.newMessageText}
           />
           <br />
-          <button onClick={addMessage} type="submit" className={styless.newMessageButton}>
+          <button onClick={addMessage} className={styless.newMessageButton}>
             Send
           </button>
         </form>

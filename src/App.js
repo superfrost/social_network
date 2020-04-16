@@ -12,6 +12,7 @@ import Settings from "./components/Settings/Settings";
 
 
 const App = (props) => {
+  debugger
   return (
     <div className="app-wrapper">
       <Header />
@@ -22,7 +23,7 @@ const App = (props) => {
           render={() => <Dialogs 
             state={props.state.messagePage}
             addNewMessage={props.addNewMessage}
-            addNewMessageOnChange={props.addNewMessageOnChange}
+            newMessageTextOnChange={props.newMessageTextOnChange}
           />}
         />
         <Route

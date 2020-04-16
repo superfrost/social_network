@@ -1,32 +1,17 @@
-let rerenderInttireTree = () => {
-    console.log('State changed');
-}
-
 let myProfile = {
     my_id: 11,
     avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NylsCxMY8dDSzJ_hEQtC0gAAAA%26pid%3DApi&f=1',
     name:'Terminator',
     education: "PhD",
-    work: 'DataScientist'}
-
-let dialogsData = [
-    {id: 1, name: 'Anton', photoSrc: 'https://www.famousbirthdays.com/faces/clooney-george-image.jpg'},
-    {id: 2, name: 'Lera', photoSrc: 'https://www.famousbirthdays.com/headshots/zoe-saldana-5.jpg'},
-    {id: 3, name: 'Nick', photoSrc: 'https://www.famousbirthdays.com/faces/dicaprio-l-image.jpg'},
-    {id: 4, name: 'Ben', photoSrc: 'https://www.famousbirthdays.com/headshots/ben-stiller-4.jpg'},
-    {id: 5, name: 'Kate', photoSrc: 'https://www.famousbirthdays.com/faces/banks-tyra-image.jpg'},
-    {id: 6, name: 'John', photoSrc: 'https://www.famousbirthdays.com/headshots/dwayne-johnson-9.jpg'},
-    {id: 7, name: 'B.Kingsley', photoSrc: 'https://www.famousbirthdays.com/thumbnails/kingsley-ben-large.jpg'},
-    {id: 8, name: 'Will Smit', photoSrc: 'https://www.famousbirthdays.com/headshots/will-smith-1.jpg'}
-]
+    work: 'DataScientist'};
 
 let messageData = [
     {id: 1, person_id: 2, date: '10-04-2020 18:52', message: "Hi. Realy cool weather! Do you wanna go to park?"},
     {id: 2, person_id: 1, date: '09-04-2020 17:37', message: "Hi it's true. Meat me near my house in 15."},
     {id: 3, person_id: 2, date: '08-04-2020 16:22', message: "Ok I'll be there!"},
-    {id: 4, person_id: 1, date: '07-04-2020 15:17', message: "Ok. See you 😊"},
-    {id: 5, person_id: 2, date: '06-04-2020 14:49', message: "Love you 💖💖💖"},
-    {id: 6, person_id: 1, date: '05-04-2020 13:56', message: "Me too 💋💋💋💋"},
+    {id: 4, person_id: 1, date: '07-04-2020 15:17', message: "Ok. See you :-)"},
+    {id: 5, person_id: 2, date: '06-04-2020 14:49', message: "Love you love"},
+    {id: 6, person_id: 1, date: '05-04-2020 13:56', message: "Me too kiss kiss kiss"},
     {id: 7, person_id: 3, date: '04-04-2020 12:14', message: "He man wat's up"},
     {id: 8, person_id: 1, date: '03-04-2020 11:14', message: "Cool dude!"},
     {id: 9, person_id: 3, date: '02-04-2020 10:02', message: "Do you wana play Mortal Combat?"},
@@ -36,7 +21,7 @@ let messageData = [
     {id: 13, person_id: 5, date: '29-03-2020 16:22', message: "wana get some party"},
     {id: 14, person_id: 1, date: '28-03-2020 15:12', message: "not today... I'm busy"},
     {id: 15, person_id: 5, date: '27-03-2020 14:35', message: "ok no problem"},
-    {id: 16, person_id: 6, date: '26-03-2020 13:21', message: "Dude where are you?????"},
+    {id: 16, person_id: 6, date: '26-03-2020 13:21', message: "Dude where are you?????"}
 ]
 
 let posts = [
@@ -70,72 +55,102 @@ let friends = [
     
 ]
 
-let state = {
-    profilePage: {
-        posts,
-        friends,
-        myProfile,
-        newPostText: "Hi it's newPostTexttt"
-    },
-    messagePage: {
-        messageData,
-        dialogsData,
-        friends,
-        newMessageText: "New message"
-    },
-    navbar: {
-        friends
-    }
-}
-
-export const newPostTextOnChenge = (text) => {
-    state.profilePage.newPostText = text;
-    rerenderInttireTree(state);
-}
-
-export const addNewMessageOnChange = (text) => {
-    //debugger;
-    state.messagePage.newMessageText = text;
-    rerenderInttireTree(state);
-}
-
-window.state = state
-
-export const addNewPost = () => {
-    //debugger;
-    let time = new Date()
-    let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
-    //let timeNow = `${time}`
-    let newPost = {
-        id: 17,
-        person_id: 1,
-        date: timeNow,
-        message: state.profilePage.newPostText,
-        like_count: 0
-    };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = '';
-    rerenderInttireTree(state);
-}
-
-export const addNewMessage = () => {
-    //debugger;
-    let time = new Date()
-    let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
+let dialogsData = [
+    {id: 1, name: 'Anton', photoSrc: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.famousbirthdays.com%2Ffaces%2Fclooney-george-image.jpg&f=1&nofb=1'},
+    {id: 2, name: 'Lera', photoSrc: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.famousbirthdays.com%2Fheadshots%2Fzoe-saldana-5.jpg&f=1&nofb=1'},
+    {id: 3, name: 'Nick', photoSrc: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.famousbirthdays.com%2Ffaces%2Fdicaprio-l-image.jpg&f=1&nofb=1'},
+    {id: 4, name: 'Ben', photoSrc: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.famousbirthdays.com%2Fheadshots%2Fben-stiller-4.jpg&f=1&nofb=1'},
+    {id: 5, name: 'Kate', photoSrc: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.famousbirthdays.com%2Ffaces%2Fbanks-tyra-image.jpg&f=1&nofb=1'},
+    {id: 6, name: 'John', photoSrc: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.famousbirthdays.com%2Fheadshots%2Fdwayne-johnson-9.jpg&f=1&nofb=1'},
+    {id: 7, name: 'B.Kingsley', photoSrc: 'https://www.famousbirthdays.com/thumbnails/kingsley-ben-large.jpg'},
+    {id: 8, name: 'Will Smit', photoSrc: 'https://www.famousbirthdays.com/headshots/will-smith-1.jpg'}
     
-    let newMessage = {
-        id: 17, 
-        person_id: 1, 
-        date: timeNow, 
-        message: state.messagePage.newMessageText
-    };
-    state.messagePage.messageData.push(newMessage);
-    state.messagePage.messageData = '';
-    rerenderInttireTree(state);
+]
+
+// let state = {
+//     profilePage: {
+//         posts,
+//         friends,
+//         myProfile,
+//         newPostText: "Hi it's newPostTexttt"
+//     },
+//     messagePage: {
+//         messageData: messageData,
+//         dialogsData: friends,
+//         friends,
+//         newMessageText: "New message"
+//     },
+//     navbar: {
+//         friends
+//     }
+// }
+
+let store = {
+    _state: {
+        profilePage: {
+            posts,
+            friends,
+            myProfile,
+            newPostText: "Hi it's newPostTexttt",
+        },
+        messagePage: {
+            messageData,
+            dialogsData,
+            friends,
+            newMessageText: "New message"
+        },
+        navbar: {
+            friends
+        }
+    },
+    getState() {
+        return this._state
+    },
+    _callSubscriber() {
+        console.log('State changed');
+    },
+    newPostTextOnChenge(text) {
+        this._state.profilePage.newPostText = text;
+        this._callSubscriber(this._state);
+    },
+    newMessageTextOnChange(text) {
+        this._state.messagePage.newMessageText = text;
+        this._callSubscriber(this._state);
+    },
+    addNewPost() {
+        //debugger;
+        let time = new Date()
+        let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
+        let newPost = {
+            id: 17,
+            person_id: 1,
+            date: timeNow,
+            message: this._state.profilePage.newPostText,
+            like_count: 0
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber(this._state);
+    },
+    addNewMessage() {
+        //debugger;
+        let time = new Date()
+        let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
+        
+        let newMessage = {
+            id: 17, 
+            person_id: 1, 
+            date: timeNow, 
+            message: this._state.messagePage.newMessageText
+        };
+        this._state.messagePage.messageData.push(newMessage);
+        this._state.messagePage.newMessageText = '';
+        this._callSubscriber(this._state);
+    },
+    subscribe (observer) {
+        this._callSubscriber = observer;
+    }
 };
 
-export const subscribe = (observer) => {
-    rerenderInttireTree = observer;
-}
-
-export default state
+export default store;
+window.state = store;
