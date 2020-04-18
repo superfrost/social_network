@@ -1,17 +1,23 @@
 import React from "react";
 import styless from "./../Profile.module.css";
 
+const addPostActionCreator = () => {
+  return { type: 'ADD-POST' }
+}
+
 const CreatePost = (props) => {
 
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    props.addNewPost();
+    const action = { type: 'ADD-POST' };
+    props.dispatch(action);
   };
 
   let onChangeTextarea = () => {
     let text = newPostElement.current.value;
-    props.newPostTextOnChenge(text);
+    const action = {type: 'NEW-POST-TEXT-ON-CHANGE', text };
+    props.dispatch(action);
   }
 
   return (

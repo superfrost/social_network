@@ -12,17 +12,13 @@ let rerenderIntireTree = (state) => {
       <BrowserRouter>
         <App
           state={state}
-          addNewPost={store.addNewPost.bind(store)}
-          addNewMessage={store.addNewMessage.bind(store)}
-          newPostTextOnChenge={store.newPostTextOnChenge.bind(store)}
-          newMessageTextOnChange={store.newMessageTextOnChange.bind(store)}
+          dispatch={store.dispatch.bind(store)}
         />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
   );
 };
-console.log('index.js store', store.getState());
 
 rerenderIntireTree(store.getState());
 

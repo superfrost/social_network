@@ -8,12 +8,17 @@ const Dialogs = (props) => {
   let newMessageReactRef = React.createRef();
   
   let addMessage = () => {
-    props.addNewMessage();
+    props.dispatch({
+      type: 'ADD-NEW-MESSAGE'
+    })
   };
 
   let OnChangeTextInTextarea = () => {
     let text = newMessageReactRef.current.value;
-    props.newMessageTextOnChange(text);
+    props.dispatch({
+      type: 'NEW-MESSAGE-TEXT-ON-CHANGE',
+      text
+    }) //newMessageTextOnChange(text);
   };
   console.log(props.state.messageData);
   let dialogElements = props.state.dialogsData.map((dialog) => (

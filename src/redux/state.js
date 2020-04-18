@@ -67,24 +67,6 @@ let dialogsData = [
     
 ]
 
-// let state = {
-//     profilePage: {
-//         posts,
-//         friends,
-//         myProfile,
-//         newPostText: "Hi it's newPostTexttt"
-//     },
-//     messagePage: {
-//         messageData: messageData,
-//         dialogsData: friends,
-//         friends,
-//         newMessageText: "New message"
-//     },
-//     navbar: {
-//         friends
-//     }
-// }
-
 let store = {
     _state: {
         profilePage: {
@@ -103,52 +85,53 @@ let store = {
             friends
         }
     },
-    getState() {
-        return this._state
-    },
     _callSubscriber() {
         console.log('State changed');
     },
-    newPostTextOnChenge(text) {
-        this._state.profilePage.newPostText = text;
-        this._callSubscriber(this._state);
-    },
-    newMessageTextOnChange(text) {
-        this._state.messagePage.newMessageText = text;
-        this._callSubscriber(this._state);
-    },
-    addNewPost() {
-        //debugger;
-        let time = new Date()
-        let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
-        let newPost = {
-            id: 17,
-            person_id: 1,
-            date: timeNow,
-            message: this._state.profilePage.newPostText,
-            like_count: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    addNewMessage() {
-        //debugger;
-        let time = new Date()
-        let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
-        
-        let newMessage = {
-            id: 17, 
-            person_id: 1, 
-            date: timeNow, 
-            message: this._state.messagePage.newMessageText
-        };
-        this._state.messagePage.messageData.push(newMessage);
-        this._state.messagePage.newMessageText = '';
-        this._callSubscriber(this._state);
+    getState() {
+        return this._state
     },
     subscribe (observer) {
         this._callSubscriber = observer;
+    },
+    dispatch(action) { // {type: "POST"}
+    debugger;
+        if (action.type === 'ADD-POST') {
+            let time = new Date()
+            let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
+            let newPost = {
+                id: 17,
+                person_id: 1,
+                date: timeNow,
+                message: this._state.profilePage.newPostText,
+                like_count: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } 
+        else if (action.type === 'NEW-POST-TEXT-ON-CHANGE') {
+            this._state.profilePage.newPostText = action.text;
+            this._callSubscriber(this._state);
+        }
+        else if (action.type === 'ADD-NEW-MESSAGE') {
+            let time = new Date()
+            let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
+            
+            let newMessage = {
+                id: 17, 
+                person_id: 1, 
+                date: timeNow, 
+                message: this._state.messagePage.newMessageText
+            };
+            this._state.messagePage.messageData.push(newMessage);
+            this._state.messagePage.newMessageText = '';
+            this._callSubscriber(this._state);    
+        }
+        else if (action.type === 'NEW-MESSAGE-TEXT-ON-CHANGE') {
+            this._state.messagePage.newMessageText = action.text;
+            this._callSubscriber(this._state);
+        }
     }
 };
 
