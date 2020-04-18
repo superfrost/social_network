@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const NEW_POST_TEXT_ON_CHANGE = 'NEW-POST-TEXT-ON-CHANGE';
+const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
+const NEW_MESSAGE_TEXT_ON_CHANGE = 'NEW-MESSAGE-TEXT-ON-CHANGE';
+
+
 let myProfile = {
     my_id: 11,
     avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NylsCxMY8dDSzJ_hEQtC0gAAAA%26pid%3DApi&f=1',
@@ -96,7 +102,7 @@ let store = {
     },
     dispatch(action) { // {type: "POST"}
     debugger;
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let time = new Date()
             let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
             let newPost = {
@@ -110,11 +116,11 @@ let store = {
             this._state.profilePage.newPostText = '';
             this._callSubscriber(this._state);
         } 
-        else if (action.type === 'NEW-POST-TEXT-ON-CHANGE') {
+        else if (action.type === NEW_POST_TEXT_ON_CHANGE) {
             this._state.profilePage.newPostText = action.text;
             this._callSubscriber(this._state);
         }
-        else if (action.type === 'ADD-NEW-MESSAGE') {
+        else if (action.type === ADD_NEW_MESSAGE) {
             let time = new Date()
             let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
             
@@ -128,12 +134,28 @@ let store = {
             this._state.messagePage.newMessageText = '';
             this._callSubscriber(this._state);    
         }
-        else if (action.type === 'NEW-MESSAGE-TEXT-ON-CHANGE') {
+        else if (action.type === NEW_MESSAGE_TEXT_ON_CHANGE) {
             this._state.messagePage.newMessageText = action.text;
             this._callSubscriber(this._state);
         }
     }
 };
+
+export const addPostActionCreator = () => {
+    return { type: ADD_POST }
+};
+
+export const onChangeTextareaActionCreator = (text) => {
+    return { type: NEW_POST_TEXT_ON_CHANGE, text }
+};
+
+export const addMessageActionCreator = () => {
+    return { type: ADD_NEW_MESSAGE }
+};
+
+export const OnChangeTextInTextareaActionCreator = (text) => {
+    return { type: NEW_MESSAGE_TEXT_ON_CHANGE, text }
+}
 
 export default store;
 window.state = store;

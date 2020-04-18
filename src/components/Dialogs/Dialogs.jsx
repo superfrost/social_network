@@ -2,25 +2,21 @@ import React from "react";
 import styless from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import OneMessage from "./Message/Message";
+import { addMessageActionCreator, OnChangeTextInTextareaActionCreator } from "../../redux/state";
 
 const Dialogs = (props) => {
-  //debugger;
-  let newMessageReactRef = React.createRef();
   
   let addMessage = () => {
-    props.dispatch({
-      type: 'ADD-NEW-MESSAGE'
-    })
+    let action = addMessageActionCreator();
+    props.dispatch(action)
   };
 
-  let OnChangeTextInTextarea = () => {
-    let text = newMessageReactRef.current.value;
-    props.dispatch({
-      type: 'NEW-MESSAGE-TEXT-ON-CHANGE',
-      text
-    }) //newMessageTextOnChange(text);
+  let OnChangeTextInTextarea = (event) => {
+    let text = event.target.value;
+    let action = OnChangeTextInTextareaActionCreator(text);
+    props.dispatch(action)
   };
-  console.log(props.state.messageData);
+
   let dialogElements = props.state.dialogsData.map((dialog) => (
     <DialogItem state={dialog} />
   ));
@@ -40,12 +36,10 @@ const Dialogs = (props) => {
         {dialogElements}
       </div>
       <div className={styless.messages}>
-        <form>
+        <div>
           <textarea
-            ref={newMessageReactRef}
             onChange={OnChangeTextInTextarea}
             className={styless.message_textarea_send}
-            name="newMessageArea"
             id="newMessageArea"
             value={props.state.newMessageText}
           />
@@ -53,7 +47,7 @@ const Dialogs = (props) => {
           <button onClick={addMessage} className={styless.newMessageButton}>
             Send
           </button>
-        </form>
+        </div>
         {messageElementsReverse}
       </div>
     </div>

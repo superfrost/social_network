@@ -1,22 +1,17 @@
 import React from "react";
 import styless from "./../Profile.module.css";
-
-const addPostActionCreator = () => {
-  return { type: 'ADD-POST' }
-}
+import { addPostActionCreator, onChangeTextareaActionCreator } from "../../../redux/state";
 
 const CreatePost = (props) => {
 
-  let newPostElement = React.createRef();
-
   let addPost = () => {
-    const action = { type: 'ADD-POST' };
+    let action = addPostActionCreator();
     props.dispatch(action);
   };
 
-  let onChangeTextarea = () => {
-    let text = newPostElement.current.value;
-    const action = {type: 'NEW-POST-TEXT-ON-CHANGE', text };
+  let onChangeTextarea = (event) => {
+    let text = event.target.value;
+    let action = onChangeTextareaActionCreator(text);
     props.dispatch(action);
   }
 
@@ -24,7 +19,6 @@ const CreatePost = (props) => {
     <div>
       <div className={styless.my_event_text}>
         <textarea
-          ref={newPostElement}
           onChange={onChangeTextarea}
           id="new_text_area"
           placeholder="Enter your event..."
@@ -40,4 +34,4 @@ const CreatePost = (props) => {
   );
 };
 
-export default CreatePost;
+export default CreatePost
