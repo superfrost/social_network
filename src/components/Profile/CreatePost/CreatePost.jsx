@@ -1,18 +1,15 @@
 import React from "react";
 import styless from "./../Profile.module.css";
-import { addPostActionCreator, onChangeTextareaActionCreator } from "../../../redux/profileReduser";
 
 const CreatePost = (props) => {
 
   let addPost = () => {
-    let action = addPostActionCreator();
-    props.dispatch(action);
+    props.addPost();
   };
 
   let onChangeTextarea = (event) => {
     let text = event.target.value;
-    let action = onChangeTextareaActionCreator(text);
-    props.dispatch(action);
+    props.onChangeTextarea(text);
   }
 
   return (
@@ -22,11 +19,13 @@ const CreatePost = (props) => {
           onChange={onChangeTextarea}
           id="new_text_area"
           placeholder="Enter your event..."
-          value={props.state}
+          value={props.posts.newPostText}
         />
       </div>
       <div>
-        <button onClick={addPost} className={styless.send_button}>
+        <button 
+          onClick={addPost} 
+          className={styless.send_button}>
           Send
         </button>
       </div>
@@ -34,4 +33,4 @@ const CreatePost = (props) => {
   );
 };
 
-export default CreatePost
+export default CreatePost;

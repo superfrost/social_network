@@ -2,7 +2,7 @@ import React from "react";
 import styless from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
 import MyProfile from "./MyProfile/MyProfile";
-import CreatePost from "./CreatePost/CreatePost";
+import CreatePostContainer from "./CreatePost/CreatePostContainer";
 
 const Profile = (props) => {
   return (
@@ -15,9 +15,10 @@ const Profile = (props) => {
         />
       </div>
       <MyProfile state={props.state.myProfile}/>
-      <CreatePost 
-        state={props.state.newPostText}
-        dispatch={props.dispatch}
+      <CreatePostContainer
+        store={props.store}
+        // state={props.state}
+        // dispatch={props.dispatch}
         // addNewPost={props.addNewPost} 
         // newPostTextOnChenge={props.newPostTextOnChenge}
       />

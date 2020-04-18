@@ -2,19 +2,16 @@ import React from "react";
 import styless from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import OneMessage from "./Message/Message";
-import { addMessageActionCreator, OnChangeTextInTextareaActionCreator } from "../../redux/dialogsReduser";
 
 const Dialogs = (props) => {
   
   let addMessage = () => {
-    let action = addMessageActionCreator();
-    props.dispatch(action)
+    props.addMessage()
   };
 
   let OnChangeTextInTextarea = (event) => {
     let text = event.target.value;
-    let action = OnChangeTextInTextareaActionCreator(text);
-    props.dispatch(action)
+    props.OnChangeTextInTextarea(text)
   };
 
   let dialogElements = props.state.dialogsData.map((dialog) => (

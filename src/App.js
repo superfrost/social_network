@@ -4,15 +4,15 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import { Route } from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
-  debugger
+  debugger;
   return (
     <div className="app-wrapper">
       <Header />
@@ -20,18 +20,20 @@ const App = (props) => {
       <div className="app-wrapper-content">
         <Route
           path="/dialogs"
-          render={() => <Dialogs 
+          render={() => <DialogsContainer
+            store={props.store}
             state={props.state.messagePage}
-            dispatch={props.dispatch}
+            //dispatch={props.dispatch}
             // addNewMessage={props.addNewMessage}
             // newMessageTextOnChange={props.newMessageTextOnChange}
           />}
         />
         <Route
           path="/profile"
-          render={() => <Profile 
+          render={() => <Profile
+            store={props.store}
             state={props.state.profilePage}
-            dispatch={props.dispatch}
+            // dispatch={props.dispatch}
           />}
         />
         <Route path="/news" component={News} />

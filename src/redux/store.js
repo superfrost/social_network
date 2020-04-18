@@ -56,7 +56,6 @@ let friends = [
     {id: 6, name: 'John', photoSrc: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.famousbirthdays.com%2Fheadshots%2Fdwayne-johnson-9.jpg&f=1&nofb=1'},
     {id: 7, name: 'B.Kingsley', photoSrc: 'https://www.famousbirthdays.com/thumbnails/kingsley-ben-large.jpg'},
     {id: 8, name: 'Will Smit', photoSrc: 'https://www.famousbirthdays.com/headshots/will-smith-1.jpg'}
-    
 ]
 
 let dialogsData = [
