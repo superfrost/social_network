@@ -1,8 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const NEW_POST_TEXT_ON_CHANGE = 'NEW-POST-TEXT-ON-CHANGE';
-const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
-const NEW_MESSAGE_TEXT_ON_CHANGE = 'NEW-MESSAGE-TEXT-ON-CHANGE';
-
+import profileReduser from "./profileReduser";
+import dialogsReduser from "./dialogsReduser";
+import navbarReduser from "./navbarReduser";
 
 let myProfile = {
     my_id: 11,
@@ -101,61 +99,14 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) { // {type: "POST"}
-    debugger;
-        if (action.type === ADD_POST) {
-            let time = new Date()
-            let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
-            let newPost = {
-                id: 17,
-                person_id: 1,
-                date: timeNow,
-                message: this._state.profilePage.newPostText,
-                like_count: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        } 
-        else if (action.type === NEW_POST_TEXT_ON_CHANGE) {
-            this._state.profilePage.newPostText = action.text;
-            this._callSubscriber(this._state);
-        }
-        else if (action.type === ADD_NEW_MESSAGE) {
-            let time = new Date()
-            let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
-            
-            let newMessage = {
-                id: 17, 
-                person_id: 1, 
-                date: timeNow, 
-                message: this._state.messagePage.newMessageText
-            };
-            this._state.messagePage.messageData.push(newMessage);
-            this._state.messagePage.newMessageText = '';
-            this._callSubscriber(this._state);    
-        }
-        else if (action.type === NEW_MESSAGE_TEXT_ON_CHANGE) {
-            this._state.messagePage.newMessageText = action.text;
-            this._callSubscriber(this._state);
-        }
+    //debugger;
+    this._state.profilePage = profileReduser(this._state.profilePage, action);
+    this._state.messagePage = dialogsReduser(this._state.messagePage, action);
+    this._state.navbar = navbarReduser(this._state.navbar, action);
+
+    this._callSubscriber(this._state);
     }
 };
-
-export const addPostActionCreator = () => {
-    return { type: ADD_POST }
-};
-
-export const onChangeTextareaActionCreator = (text) => {
-    return { type: NEW_POST_TEXT_ON_CHANGE, text }
-};
-
-export const addMessageActionCreator = () => {
-    return { type: ADD_NEW_MESSAGE }
-};
-
-export const OnChangeTextInTextareaActionCreator = (text) => {
-    return { type: NEW_MESSAGE_TEXT_ON_CHANGE, text }
-}
 
 export default store;
 window.state = store;

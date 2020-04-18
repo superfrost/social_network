@@ -1,6 +1,6 @@
 import React from "react";
 import styless from "./../Profile.module.css";
-import { addPostActionCreator, onChangeTextareaActionCreator } from "../../../redux/state";
+import { addPostActionCreator, onChangeTextareaActionCreator } from "../../../redux/profileReduser";
 
 const CreatePost = (props) => {
 
