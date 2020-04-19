@@ -47,13 +47,21 @@ let initialState = {
 const dialogsReduser = (state = initialState, action) => {
     switch (action.type) {
         case ADD_NEW_MESSAGE:
-            let time = new Date()
-            let timeNow = `${time.getUTCDate()}-${time.getUTCMonth()}-${time.getUTCFullYear()} ${time.getUTCHours()}:${time.getUTCMinutes()}`
-            
+            let now = new Date()
+            let formatDate = (date) => {
+                return date.toLocaleString('us', {
+                    day:   '2-digit',
+                    month: '2-digit',
+                    year:  '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+            }
             let newMessage = {
                 id: 17, 
                 person_id: 1, 
-                date: timeNow, 
+                date: formatDate(now), 
                 message: state.newMessageText
             };
             state.messageData.push(newMessage);

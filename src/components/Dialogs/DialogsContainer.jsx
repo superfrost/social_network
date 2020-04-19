@@ -1,25 +1,35 @@
 import React from "react";
 import { addMessageActionCreator, OnChangeTextInTextareaActionCreator } from "../../redux/dialogsReduser";
 import Dialogs from "./Dialogs";
+import StoreContext from "../../StoreContex";
 
-const DialogsContainer = (props) => {
+const DialogsContainer = () => {
+  return (
+    <StoreContext.Consumer>
+      { 
+        store => {
+          let state = store.getState()
 
-  let state = props.store
-  
-  let addMessage = () => {
-    let action = addMessageActionCreator();
-    props.store.dispatch(action)
-  };
+          let addMessage = () => {
+            let action = addMessageActionCreator();
+            store.dispatch(action)
+          };
 
-  let OnChangeTextInTextarea = (text) => {
-    let action = OnChangeTextInTextareaActionCreator(text);
-    props.store.dispatch(action)
-  };
+          let OnChangeTextInTextarea = (text) => {
+            let action = OnChangeTextInTextareaActionCreator(text);
+            store.dispatch(action)
+          };
 
-  return (<Dialogs
-    state={props.state}
-    addMessage={addMessage}
-    OnChangeTextInTextarea={OnChangeTextInTextarea}/>);
+          return (
+            <Dialogs
+              state={state.messagePage}
+              addMessage={addMessage}
+              OnChangeTextInTextarea={OnChangeTextInTextarea}
+            />);
+        }
+      }
+    </StoreContext.Consumer>
+  )
 };
 
 export default DialogsContainer;

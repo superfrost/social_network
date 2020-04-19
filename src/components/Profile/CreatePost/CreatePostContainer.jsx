@@ -1,26 +1,35 @@
 import React from "react";
 import CreatePost from './CreatePost'
 import { addPostActionCreator, onChangeTextareaActionCreator } from "../../../redux/profileReduser";
+import StoreContext from "../../../StoreContex";
 
 const CreatePostContainer = (props) => {
 
-  let state = props.store.getState()
+  return (
+    <StoreContext.Consumer>
+      { store => {
+        let state = store.getState()
 
-  let addPost = () => {
-    let action = addPostActionCreator();
-    props.store.dispatch(action);
-  };
-
-  let onChangeTextarea = (text) => {
-    let action = onChangeTextareaActionCreator(text);
-    props.store.dispatch(action);
-  }
-
-  return (<CreatePost 
-    posts={state.profilePage}
-    //dispatch={props.dispatch}
-    addPost={addPost} 
-    onChangeTextarea={onChangeTextarea}/>
+        let addPost = () => {
+          let action = addPostActionCreator();
+          store.dispatch(action);
+        };
+      
+        let onChangeTextarea = (text) => {
+          let action = onChangeTextareaActionCreator(text);
+          store.dispatch(action);
+        }
+        
+        return (
+          <CreatePost 
+            posts={state.profilePage}
+            //dispatch={props.dispatch}
+            addPost={addPost} 
+            onChangeTextarea={onChangeTextarea}
+          />)
+        }
+      }
+    </StoreContext.Consumer>
   );
 };
 

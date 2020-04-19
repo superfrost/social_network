@@ -5,17 +5,19 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import store from './redux/redux-store'
+import StoreContext from "./StoreContex";
 
-let rerenderIntireTree = (state) => {
+let rerenderIntireTree = () => {
   debugger;
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App
-          state={state}
-          store={store}
-          // dispatch={store.dispatch.bind(store)}
-        />
+        <StoreContext.Provider value={store}>
+          <App
+            // state={state}
+            store={store}
+          />
+        </StoreContext.Provider>
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
@@ -25,8 +27,7 @@ let rerenderIntireTree = (state) => {
 rerenderIntireTree(store.getState());
 
 store.subscribe( () => {
-  let state = store.getState();
-  rerenderIntireTree(state);
+  rerenderIntireTree();
 });
 
 serviceWorker.unregister();
