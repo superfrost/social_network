@@ -17,10 +17,10 @@ const mapDispatchToProps = (dispatch) => {
     onChangeTextarea: (text) => {
       let action = onChangeTextareaActionCreator(text);
       dispatch(action);
-    }
+    },
   }
 };
 
-const CreatePostContainer = connect(mapStateToProps, mapDispatchToProps)(CreatePost)
+const CreatePostContainer = connect(mapStateToProps, mapDispatchToProps)(CreatePost);
 
-export default CreatePostContainer
+export default CreatePostContainer;

@@ -30,7 +30,7 @@ const App = (props) => {
         <Route
           path="/profile"
           render={() => <Profile
-            store={props.store}
+            // store={props.store}
             state={state.profilePage}
           />}
         />

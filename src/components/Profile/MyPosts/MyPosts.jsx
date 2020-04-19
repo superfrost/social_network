@@ -4,8 +4,6 @@ import Post from './Post/Post'
 
 
 const MyPosts = (props) => {
-  //let posterName = props.state.friends
-  
   let postsElements = props.state.posts.map(post => {
     let posterName = props.state.friends[post.person_id - 1].name;
     let photoSrc = props.state.friends[post.person_id - 1].photoSrc;
@@ -18,9 +16,6 @@ const MyPosts = (props) => {
   
   return (
     <div>
-      <div>
-        All posts
-      </div>
       <div className={styless.posts}>
         {postsElementsReverse}
       </div>

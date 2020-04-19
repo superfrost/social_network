@@ -46,7 +46,7 @@ let initialState = {
 
 const dialogsReduser = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_NEW_MESSAGE:
+        case ADD_NEW_MESSAGE: {
             let now = new Date()
             let formatDate = (date) => {
                 return date.toLocaleString('us', {
@@ -64,12 +64,18 @@ const dialogsReduser = (state = initialState, action) => {
                 date: formatDate(now), 
                 message: state.newMessageText
             };
-            state.messageData.push(newMessage);
-            state.newMessageText = '';
-            return state;
-        case NEW_MESSAGE_TEXT_ON_CHANGE :
-            state.newMessageText = action.text;
-            return state;
+            return {
+                ...state,
+                messageData: [...state.messageData, newMessage],
+                newMessageText: '',
+            };
+        }
+        case NEW_MESSAGE_TEXT_ON_CHANGE : {
+            return {
+                ...state,
+                newMessageText: action.text,
+            };
+        }
         default:
             return state;
     }

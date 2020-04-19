@@ -7,27 +7,17 @@ import { BrowserRouter } from "react-router-dom";
 import store from './redux/redux-store'
 import { Provider } from "react-redux";
 
-let rerenderIntireTree = () => {
-  debugger;
-  ReactDOM.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <Provider store={store}>
-          <App
-            // state={state}
-            store={store}
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App
+          store={store}
           />
-        </Provider>
-      </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById("root")
-  );
-};
-
-rerenderIntireTree(store.getState());
-
-store.subscribe( () => {
-  rerenderIntireTree();
-});
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 
 serviceWorker.unregister();

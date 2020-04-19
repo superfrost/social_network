@@ -42,10 +42,10 @@ let initialState = {
 
 const profileReduser = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
-            let now = new Date()
+        case ADD_POST: {
+            let now = new Date();
             let formatDate = (date) => {
-                return date.toLocaleString('us', {
+                return date.toLocaleString('ru', {
                     day:   '2-digit',
                     month: '2-digit',
                     year:  '2-digit',
@@ -61,14 +61,18 @@ const profileReduser = (state = initialState, action) => {
                 message: state.newPostText,
                 like_count: 0
             };
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state;
-
-        case NEW_POST_TEXT_ON_CHANGE:
-            state.newPostText = action.text;
-            return state;
-
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: '',
+            };
+        }
+        case NEW_POST_TEXT_ON_CHANGE: {
+            return {
+                ...state,
+                newPostText: action.text,
+            };
+        }
         default:
             return state;
     }
