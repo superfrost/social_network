@@ -1,18 +1,16 @@
 import React from 'react'
 import styless from './Users.module.css'
+import * as axios from 'axios'
+import no_avatar from '../../asserts/img/no_ava.png'
 
 const Users = (props) => {
-  debugger; 
+  //debugger; 
   if (props.users.length === 0) {
-    props.setUsers(
-      [
-        {id: 1, name: 'Anton', followed: true, status: 'Boss', location: {city: 'Moscow', country: 'Russia'}, avatarSrc: 'https://www.famousbirthdays.com/faces/clooney-george-image.jpg'},
-        {id: 2, name: 'Lera', followed: true, status: 'Boss', location: {city: 'Moscow', country: 'Russia'}, avatarSrc: 'https://www.famousbirthdays.com/headshots/zoe-saldana-5.jpg'},
-        {id: 3, name: 'Andrew', followed: true, status: 'Boss', location: {city: 'New-York', country: 'USA'}, avatarSrc: 'https://www.famousbirthdays.com/faces/dicaprio-l-image.jpg'},
-        {id: 4, name: 'Nick', followed: false, status: 'Boss', location: {city: 'LA', country: 'USA'}, avatarSrc: 'https://www.famousbirthdays.com/headshots/ben-stiller-4.jpg'},
-        {id: 5, name: 'John', followed: false, status: 'Boss', location: {city: 'San-Fran', country: 'USA'}, avatarSrc: 'https://www.famousbirthdays.com/faces/banks-tyra-image.jpg'},
-      ]
-    )}
+    axios.get('http://localhost:5000')
+      .then(response => {
+        props.setUsers(response.data.users)
+      })
+  };
   return (
     <div>
       {props.users.map((u) => (
@@ -21,7 +19,7 @@ const Users = (props) => {
             <div>
               <img 
                 className={styless.user_avatar}
-                src={u.avatarSrc} 
+                src={u.avatarSrc != null ? u.avatarSrc : no_avatar } 
                 alt={u.name} />
             </div>
             <div>
