@@ -4,12 +4,11 @@ import * as axios from 'axios'
 import no_avatar from '../../asserts/img/no_ava.png'
 
 class Users extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     axios.get('http://localhost:5000/users')
       .then(response => {
         this.props.setUsers(response.data.users)
-      })
+      });
   };
 
   render() {
