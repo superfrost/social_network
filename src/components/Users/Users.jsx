@@ -3,17 +3,19 @@ import styless from './Users.module.css'
 import * as axios from 'axios'
 import no_avatar from '../../asserts/img/no_ava.png'
 
-const Users = (props) => {
-  //debugger; 
-  if (props.users.length === 0) {
-    axios.get('http://localhost:5000')
+class Users extends React.Component {
+  constructor(props) {
+    super(props);
+    axios.get('http://localhost:5000/users')
       .then(response => {
-        props.setUsers(response.data.users)
+        this.props.setUsers(response.data.users)
       })
   };
-  return (
+
+  render() {
+    return (
     <div>
-      {props.users.map((u) => (
+      {this.props.users.map((u) => (
         <div key={u.id}>
           <span>
             <div>
@@ -24,8 +26,8 @@ const Users = (props) => {
             </div>
             <div>
               { u.followed
-                ? <button onClick={() => props.unFollow(u.id)}>Unfollow</button>
-                : <button onClick={() => props.follow(u.id)}>Follow</button>
+                ? <button onClick={() => this.props.unFollow(u.id)}>Unfollow</button>
+                : <button onClick={() => this.props.follow(u.id)}>Follow</button>
               }
             </div>
           </span>
@@ -42,7 +44,8 @@ const Users = (props) => {
         </div>
       ))}
     </div>
-  );
-};
+    )
+  }
+}
 
 export default Users
