@@ -1,3 +1,27 @@
+.usersContainer {
+  padding: 5px;
+}
+
+.usersPaginationContainer {
+  margin: 5px 0;
+  padding: 5px;
+  border: solid white 1px;
+  border-radius: 4px;
+  color: white;
+  background-color: rgb(60, 119, 146);
+  text-align: center;
+}
+
+.userContainer {
+  display: flex;
+  margin: 5px 0;
+  padding: 5px;
+  border: solid white 1px;
+  border-radius: 4px;
+  color: white;
+  background-color: rgb(60, 119, 146);
+}
+
 .user_avatar {
   height: 80px;
   border-radius: 50%;

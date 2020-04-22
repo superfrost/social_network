@@ -3,7 +3,7 @@ import styless from "./Users.module.css";
 import no_avatar from "../../asserts/img/no_ava.png";
 
 let Users = (props) => {
-  debugger
+  // debugger
   let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i = 1; i <= pageCount; i++) {
@@ -11,8 +11,8 @@ let Users = (props) => {
   }
 
   return (
-    <div>
-      <div>
+    <div className={styless.usersContainer}>
+      <div className={styless.usersPaginationContainer}>
         {pages.map((p) => {
           return (
             <span
@@ -25,7 +25,7 @@ let Users = (props) => {
         })}
       </div>
       {props.users.map((u) => (
-        <div key={u.id}>
+        <div key={u.id} className={styless.userContainer}>
           <span>
             <div>
               <img
