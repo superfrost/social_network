@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const NEW_POST_TEXT_ON_CHANGE = 'NEW-POST-TEXT-ON-CHANGE';
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let initialState = {
     posts: [
@@ -30,14 +31,17 @@ let initialState = {
         {id: 7, name: 'B.Kingsley', photoSrc: 'https://www.famousbirthdays.com/thumbnails/kingsley-ben-large.jpg'},
         {id: 8, name: 'Will Smit', photoSrc: 'https://www.famousbirthdays.com/headshots/will-smith-1.jpg'}
     ],
-    myProfile: {
-        my_id: 11,
-        avatar: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NylsCxMY8dDSzJ_hEQtC0gAAAA%26pid%3DApi&f=1',
-        name:'Terminator',
-        education: "PhD",
-        work: 'DataScientist'
-    },
     newPostText: "Hi it's newPostText",
+    myProfile: null,
+    // {
+    //     id: 1,
+    //     photo_src: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NylsCxMY8dDSzJ_hEQtC0gAAAA%26pid%3DApi&f=1',
+    //     name:'Terminator',
+    //     status:'Hi',
+    //     location:'London',
+    //     education: "PhD",
+    //     work: 'DataScientist'
+    // },
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -73,6 +77,12 @@ const profileReduser = (state = initialState, action) => {
                 newPostText: action.text,
             };
         }
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                myProfile: action.profile,
+            };
+        }
         default:
             return state;
     }
@@ -84,6 +94,9 @@ export const addPostActionCreator = () => {
 
 export const onChangeTextareaActionCreator = (text) => {
     return { type: NEW_POST_TEXT_ON_CHANGE, text }
+};
+export const setUserProfile = (profile) => {
+    return { type: SET_USER_PROFILE, profile }
 };
 
 export default profileReduser;

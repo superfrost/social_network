@@ -64,7 +64,6 @@ const userReduser = (state = initialState, action) => {
     default:
       return state
   };
-  return state;
 };
 
 export const follow = (userId) => ({type: FOLLOW, userId});

@@ -1,6 +1,7 @@
 import React from "react";
 import styless from "./Users.module.css";
 import no_avatar from "../../asserts/img/no_ava.png";
+import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
 let Users = (props) => {
   // debugger
@@ -28,11 +29,13 @@ let Users = (props) => {
         <div key={u.id} className={styless.userContainer}>
           <span>
             <div>
-              <img
-                className={styless.user_avatar}
-                src={u.avatarSrc != null ? u.avatarSrc : no_avatar}
-                alt={u.name}
-              />
+              <NavLink to={"/profile/"+u.id}>
+                <img
+                  className={styless.user_avatar}
+                  src={u.avatarSrc != null ? u.avatarSrc : no_avatar}
+                  alt={u.name}
+                />
+              </NavLink>
             </div>
             <div>
               {u.followed ? (

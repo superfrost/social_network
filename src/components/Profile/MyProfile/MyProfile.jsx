@@ -2,6 +2,7 @@ import React from "react";
 import styless from "./MyProfile.module.css";
 
 const MyProfile = (props) => {
+  debugger
   return (
     <div>
       <div>
@@ -16,13 +17,16 @@ const MyProfile = (props) => {
           <img
             className={styless.ava}
             alt="my_avatar"
-            src={props.state.avatar}
+            src={props.myProfile.photo_src}
           />
         </div>
         <div className={styless.my_event_container}>
-          <div className={styless.my_event_user_name}>{props.state.name}</div>
-          <div>{props.state.work}</div>
-          <div>{props.state.education}</div>
+          <div className={styless.my_event_user_name}>{props.myProfile.name}</div>
+          <div>{props.myProfile.status}</div>
+          <div>{props.myProfile.location}</div>
+          <div>{props.myProfile.work}</div>
+          <div>{props.myProfile.education}</div>
+
         </div>
       </div>
     </div>
