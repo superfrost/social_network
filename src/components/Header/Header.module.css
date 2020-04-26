@@ -34,3 +34,23 @@
   border: black solid 1px;
   padding: 4px;
 }
+
+.loginBlock {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  border: 1px white solid;
+  border-radius: 5px;
+  align-content: center;
+  justify-content: center;
+}
+
+.loginBlock:hover {
+  background-color: chartreuse;
+  box-shadow: 5px 5px 5px red;
+}
+
+.loginBlock img {
+  height: 50px;
+}

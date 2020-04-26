@@ -2,7 +2,7 @@ import React from "react";
 import styless from "./MyProfile.module.css";
 
 const MyProfile = (props) => {
-  debugger
+  //debugger
   return (
     <div>
       <div>

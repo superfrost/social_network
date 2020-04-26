@@ -9,7 +9,9 @@ import Preloader from "../Common/Preloader/Preloader";
 class ProfileCotainer extends React.Component {
   componentDidMount() {
     let user_id = this.props.match.params.user_id
-    if (!user_id) {user_id = 1}
+    if (!user_id) {
+      user_id = 1
+    }
     axios.get(`http://localhost:5000/profile/${user_id}`)
       .then(response => {
         //debugger
@@ -18,7 +20,7 @@ class ProfileCotainer extends React.Component {
   }
 
   render() {
-    debugger
+    //debugger
     if (!this.props.myProfile) {
       return <Preloader/>
     }

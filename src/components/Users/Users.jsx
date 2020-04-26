@@ -2,6 +2,8 @@ import React from "react";
 import styless from "./Users.module.css";
 import no_avatar from "../../asserts/img/no_ava.png";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
+import * as axios from 'axios'
+
 
 let Users = (props) => {
   // debugger
@@ -39,11 +41,28 @@ let Users = (props) => {
             </div>
             <div>
               {u.followed ? (
-                <button onClick={() => props.unFollow(u.id)}>
-                  Unfollow
-                </button>
+                <button onClick={() => {
+                  
+                  axios.delete(`http://localhost:5000/unfollow/${u.id}`, {
+                    //withCredentials: true
+                  }).then(response => {
+                    debugger;
+                    if (response.data.resultCode === 0) {
+                      props.unFollow(u.id)
+                    }
+                  })
+                }}>Unfollow</button>
               ) : (
-                <button onClick={() => props.follow(u.id)}>Follow</button>
+                <button onClick={() => {
+                  axios.post(`http://localhost:5000/follow/${u.id}`, {}, {
+                    //withCredentials: true
+                  }).then(response => {
+                    debugger;
+                    if (response.data.resultCode === 0) {
+                      props.follow(u.id)
+                    }
+                  })
+                }}>Follow</button>
               )}
             </div>
           </span>

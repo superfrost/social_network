@@ -4,7 +4,7 @@ import MyProfile from "./MyProfile/MyProfile";
 import CreatePostContainer from "./CreatePost/CreatePostContainer";
 
 const Profile = (props) => {
-  debugger
+  //debugger
   return (
     <div>
       <MyProfile state={props.state.myProfile} myProfile={props.myProfile}/>
