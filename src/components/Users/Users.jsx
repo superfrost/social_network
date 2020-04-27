@@ -3,6 +3,8 @@ import styless from "./Users.module.css";
 import no_avatar from "../../asserts/img/no_ava.png";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import * as axios from 'axios'
+import { unFollowUser, followUser } from '../../api/api';
+
 
 
 let Users = (props) => {
@@ -43,22 +45,18 @@ let Users = (props) => {
               {u.followed ? (
                 <button onClick={() => {
                   
-                  axios.delete(`http://localhost:5000/unfollow/${u.id}`, {
-                    //withCredentials: true
-                  }).then(response => {
-                    debugger;
-                    if (response.data.resultCode === 0) {
+                  unFollowUser(u.id)
+                  .then(data => {
+                    if (data.resultCode === 0) {
                       props.unFollow(u.id)
                     }
                   })
                 }}>Unfollow</button>
               ) : (
                 <button onClick={() => {
-                  axios.post(`http://localhost:5000/follow/${u.id}`, {}, {
-                    //withCredentials: true
-                  }).then(response => {
-                    debugger;
-                    if (response.data.resultCode === 0) {
+                  followUser(u.id)
+                  .then(data => {
+                    if (data.resultCode === 0) {
                       props.follow(u.id)
                     }
                   })

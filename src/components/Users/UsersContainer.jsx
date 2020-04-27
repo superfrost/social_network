@@ -6,26 +6,30 @@ import { follow, unFollow, setUsers,
 import * as axios from "axios";
 import Users from "./Users";
 import Preloader from '../Common/Preloader/Preloader';
+import { getUsers } from '../../api/api';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.setToggleIsFetching(this.props.isFetching)
-    axios.get(`http://localhost:5000/users?pageSize=${this.props.pageSize}&currentPage=${this.props.currentPage}`)
-      .then((response) => {
+    
+    getUsers(this.props.pageSize, this.props.currentPage)
+      .then((data) => {
+        //debugger
         this.props.setToggleIsFetching(this.props.isFetching);
-        this.props.setUsers(response.data.users);
-        this.props.setTotalUsersCount(response.data.totalUsersCount);
-    });
+        this.props.setUsers(data.users);
+        this.props.setTotalUsersCount(data.totalUsersCount);
+      });
   };
 
   onPageChanged = (pageNumber) => {
     this.props.setToggleIsFetching(this.props.isFetching)
     this.props.setCurrentPage(pageNumber)
-    axios.get(`http://localhost:5000/users?pageSize=${this.props.pageSize}&currentPage=${pageNumber}`)
-      .then((response) => {
+    
+    getUsers(this.props.pageSize, pageNumber)
+      .then((data) => {
         this.props.setToggleIsFetching(this.props.isFetching)
-        this.props.setUsers(response.data.users);
-    });
+        this.props.setUsers(data.users);
+      });
   };
 
   render() {
