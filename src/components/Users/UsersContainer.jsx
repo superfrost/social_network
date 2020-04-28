@@ -3,16 +3,15 @@ import { connect } from 'react-redux'
 import { follow, unFollow, setUsers, 
   setCurrentPage, setTotalUsersCount, 
   setToggleIsFetching } from '../../redux/usersReduser'
-import * as axios from "axios";
 import Users from "./Users";
 import Preloader from '../Common/Preloader/Preloader';
-import { getUsers } from '../../api/api';
+import { usersAPI } from '../../api/api';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.setToggleIsFetching(this.props.isFetching)
     
-    getUsers(this.props.pageSize, this.props.currentPage)
+    usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
       .then((data) => {
         //debugger
         this.props.setToggleIsFetching(this.props.isFetching);
@@ -25,7 +24,7 @@ class UsersContainer extends React.Component {
     this.props.setToggleIsFetching(this.props.isFetching)
     this.props.setCurrentPage(pageNumber)
     
-    getUsers(this.props.pageSize, pageNumber)
+    usersAPI.getUsers(this.props.pageSize, pageNumber)
       .then((data) => {
         this.props.setToggleIsFetching(this.props.isFetching)
         this.props.setUsers(data.users);
