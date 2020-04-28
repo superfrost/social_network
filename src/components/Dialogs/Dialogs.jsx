@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom"
 import styless from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import OneMessage from "./Message/Message";
@@ -26,6 +27,8 @@ const Dialogs = (props) => {
   });
 
   let messageElementsReverse = messageElements.slice().reverse()
+
+  if (!this.props.isAuth) return <Redirect to={"/login"}/>
 
   return (
     <div className={styless.dialog_container}>
