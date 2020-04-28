@@ -1,5 +1,6 @@
 import React from "react";
 import styless from "./MyProfile.module.css";
+import no_avatar from "../../../asserts/img/no_ava.png";
 
 const MyProfile = (props) => {
   //debugger
@@ -14,11 +15,17 @@ const MyProfile = (props) => {
       </div>
       <div className={styless.my_profile_container}>
         <div className={styless.my_logo_container}>
-          <img
+        {props.myProfile.photo_src
+        ? <img
             className={styless.ava}
             alt="my_avatar"
             src={props.myProfile.photo_src}
           />
+        : <img
+            className={styless.ava}
+            alt="my_avatar"
+            src={no_avatar}
+          />}
         </div>
         <div className={styless.my_event_container}>
           <div className={styless.my_event_user_name}>{props.myProfile.name}</div>

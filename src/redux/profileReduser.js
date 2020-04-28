@@ -1,6 +1,9 @@
+import { usersAPI } from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const NEW_POST_TEXT_ON_CHANGE = 'NEW-POST-TEXT-ON-CHANGE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_PROFILE_IS_FETCHING = 'SET_PROFILE_IS_FETCHING'
 
 let initialState = {
     posts: [
@@ -33,15 +36,7 @@ let initialState = {
     ],
     newPostText: "Hi it's newPostText",
     myProfile: null,
-    // {
-    //     id: 1,
-    //     photo_src: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NylsCxMY8dDSzJ_hEQtC0gAAAA%26pid%3DApi&f=1',
-    //     name:'Terminator',
-    //     status:'Hi',
-    //     location:'London',
-    //     education: "PhD",
-    //     work: 'DataScientist'
-    // },
+    profileIsFetching: true,
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -83,6 +78,12 @@ const profileReduser = (state = initialState, action) => {
                 myProfile: action.profile,
             };
         }
+        case SET_PROFILE_IS_FETCHING: {
+            return {
+                ...state,
+                profileIsFetching: action.isFetching,
+            };
+        }
         default:
             return state;
     }
@@ -98,5 +99,24 @@ export const onChangeTextareaActionCreator = (text) => {
 export const setUserProfile = (profile) => {
     return { type: SET_USER_PROFILE, profile }
 };
+
+export const setProfileIsFetching = (isFetching) => {
+    return { type: SET_PROFILE_IS_FETCHING, isFetching }
+};
+
+export const getProfile = (user_id) => {
+    return (dispatch) => {
+        debugger
+        dispatch(setProfileIsFetching(true))
+        if (!user_id) {
+            user_id = 1
+        }
+        usersAPI.getUserProfile(user_id)
+            .then(data => {
+                dispatch(setProfileIsFetching(false))
+                dispatch(setUserProfile(data))
+        })
+    }
+}
 
 export default profileReduser;

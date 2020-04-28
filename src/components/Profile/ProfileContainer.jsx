@@ -1,8 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
-import * as axios from "axios";
 import { connect } from 'react-redux'
-import { setUserProfile } from './../../redux/profileReduser'
+import { setProfileIsFetching, getProfile } from './../../redux/profileReduser'
 import { withRouter } from "react-router-dom"
 import Preloader from "../Common/Preloader/Preloader";
 
@@ -12,11 +11,17 @@ class ProfileCotainer extends React.Component {
     if (!user_id) {
       user_id = 1
     }
-    axios.get(`http://localhost:5000/profile/${user_id}`)
-      .then(response => {
-        //debugger
-        this.props.setUserProfile(response.data)
-      })
+    this.props.getProfile(user_id)
+    // this.props.setProfileIsFetching(true)
+    // let user_id = this.props.match.params.user_id
+    // if (!user_id) {
+    //   user_id = 1
+    // }
+    // usersAPI.getUserProfile(user_id)
+    //   .then(data => {
+    //     this.props.setUserProfile(data)
+    //     this.props.setProfileIsFetching(false)
+    //   })
   }
 
   render() {
@@ -26,7 +31,10 @@ class ProfileCotainer extends React.Component {
     }
     return (
       <div>
-        <Profile {...this.props} myProfile={this.props.myProfile} />
+        {this.props.profileIsFetching
+        ? <Preloader/>
+        : <Profile {...this.props} myProfile={this.props.myProfile} />
+        }
       </div>
     );
   }
@@ -34,8 +42,12 @@ class ProfileCotainer extends React.Component {
 
 let mapStateToProps = (state) => ({
   myProfile: state.profilePage.myProfile,
+  profileIsFetching: state.profilePage.profileIsFetching,
 })
 
 let withUrlDataComponent = withRouter(ProfileCotainer)
 
-export default connect(mapStateToProps, {setUserProfile})(withUrlDataComponent);
+export default connect(mapStateToProps, {
+  setProfileIsFetching,
+  getProfile
+})(withUrlDataComponent);
