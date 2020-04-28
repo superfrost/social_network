@@ -9,7 +9,7 @@ class HeaderContainer extends React.Component {
   componentDidMount() {
     authentificateAPI.authentificateMe()
       .then(data => {
-        debugger;
+        //debugger;
         if (data.resultCode === 0) {
           //debugger;
           let {id, email, login}  = data.data
