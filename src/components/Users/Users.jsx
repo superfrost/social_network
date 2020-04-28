@@ -2,9 +2,6 @@ import React from "react";
 import styless from "./Users.module.css";
 import no_avatar from "../../asserts/img/no_ava.png";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
-import { followAPI } from '../../api/api';
-
-
 
 let Users = (props) => {
   // debugger
@@ -41,34 +38,14 @@ let Users = (props) => {
               </NavLink>
             </div>
             <div>
-              {u.followed ? (
-                <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                  //debugger
-                  props.setToggleIsFollowingProgress(true, u.id)
-                  followAPI.unFollowUser(u.id)
-                  .then(data => {
-                    if (data.resultCode === 0) {
-                      props.unFollow(u.id)
-                    }
-                  })
-                  .then(data => {
-                    props.setToggleIsFollowingProgress(false, u.id)
-                  })
-                }}>Unfollow</button>
-              ) : (
-                <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                  props.setToggleIsFollowingProgress(true, u.id)
-                  followAPI.followUser(u.id)
-                  .then(data => {
-                    if (data.resultCode === 0) {
-                      props.follow(u.id)
-                    }
-                  })
-                  .then(data => {
-                    props.setToggleIsFollowingProgress(false, u.id)
-                  })
-                }}>Follow</button>
-              )}
+              {u.followed 
+                ? (<button disabled={props.followingInProgress.some(id => id === u.id)} 
+                    onClick={() => {props.unFollow(u.id)}}
+                  >Unfollow</button>) 
+                : (<button disabled={props.followingInProgress.some(id => id === u.id)} 
+                    onClick={() => {props.follow(u.id)}}
+                  >Follow</button>)
+              }
             </div>
           </span>
           <span>
