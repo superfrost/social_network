@@ -106,7 +106,7 @@ export const setProfileIsFetching = (isFetching) => {
 
 export const getProfile = (user_id) => {
     return (dispatch) => {
-        debugger
+        //debugger
         dispatch(setProfileIsFetching(true))
         if (!user_id) {
             user_id = 1

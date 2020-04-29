@@ -16,7 +16,6 @@ export const usersAPI = {
   getUserProfile(user_id) {
     return instance.get(`profile/${user_id}`)
     .then(response => {
-      debugger
       return response.data
     })
   },
