@@ -5,33 +5,17 @@ import { follow, unFollow, setCurrentPage,
   getUsers } from '../../redux/usersReduser'
 import Users from "./Users";
 import Preloader from '../Common/Preloader/Preloader';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-
     this.props.getUsers(this.props.pageSize, this.props.currentPage);
-    // this.props.setToggleIsFetching(this.props.isFetching)
-    
-    // usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
-    //   .then((data) => {
-    //     //debugger
-    //     this.props.setToggleIsFetching(this.props.isFetching);
-    //     this.props.setUsers(data.users);
-    //     this.props.setTotalUsersCount(data.totalUsersCount);
-    //   });
   };
 
   onPageChanged = (pageNumber) => {
     this.props.getUsers(this.props.pageSize, pageNumber);
     this.props.setCurrentPage(pageNumber)
-    // this.props.setToggleIsFetching(true)
-    // this.props.setCurrentPage(pageNumber)
-    
-    // usersAPI.getUsers(this.props.pageSize, pageNumber)
-    //   .then((data) => {
-    //     this.props.setToggleIsFetching(false)
-    //     this.props.setUsers(data.users);
-    //   });
   };
 
   render() {
@@ -62,10 +46,13 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  follow,
-  unFollow,
-  setCurrentPage,
-  setToggleIsFollowingProgress,
-  getUsers,
-  })(UsersContainer);
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, {
+    follow,
+    unFollow,
+    setCurrentPage,
+    setToggleIsFollowingProgress,
+    getUsers,
+  })
+)(UsersContainer);
