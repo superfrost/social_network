@@ -28,8 +28,6 @@ const Dialogs = (props) => {
 
   let messageElementsReverse = messageElements.slice().reverse()
 
-  if (!this.props.isAuth) return <Redirect to={"/login"}/>
-
   return (
     <div className={styless.dialog_container}>
       <div className={styless.dialog_item}>
