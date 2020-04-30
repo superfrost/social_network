@@ -14,7 +14,26 @@ export const usersAPI = {
       })
   },
   getUserProfile(user_id) {
+    console.warn("Deprecated method. Please use profileAPI")
+    return profileAPI.getUserProfile(user_id)
+  },
+}
+
+export const profileAPI = {
+  getUserProfile(user_id) {
     return instance.get(`profile/${user_id}`)
+    .then(response => {
+      return response.data
+    })
+  },
+  getStatus(user_id) {
+    return instance.get(`status/${user_id}`)
+    .then(response => {
+      return response.data
+    })
+  },
+  updateStatus(status) {
+    return instance.put(`status`, {status: status})
     .then(response => {
       return response.data
     })

@@ -23,10 +23,13 @@ const MyProfile = (props) => {
         </div>
         <div className={styless.my_event_container}>
           <div className={styless.my_event_user_name}>{props.myProfile.name}</div>
-          <ProfileStatus status={props.myProfile.status}/>
-          <div>{props.myProfile.location}</div>
-          <div>{props.myProfile.work}</div>
-          <div>{props.myProfile.education}</div>
+          <ProfileStatus 
+            status={props.status}
+            updateStatus={props.updateStatus}
+            />
+          <div>Location: {props.myProfile.location}</div>
+          <div>Work: {props.myProfile.work}</div>
+          <div>Education: {props.myProfile.education}</div>
 
         </div>
       </div>

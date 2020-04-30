@@ -7,7 +7,11 @@ const Profile = (props) => {
   //debugger
   return (
     <div>
-      <MyProfile state={props.state.myProfile} myProfile={props.myProfile}/>
+      <MyProfile 
+        state={props.state.myProfile} 
+        myProfile={props.myProfile}
+        status={props.status}
+        updateStatus={props.updateStatus} />
       <CreatePostContainer/>
       {/* <MyPosts state={props.state}/> */}
     </div>
