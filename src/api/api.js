@@ -61,5 +61,15 @@ export const authentificateAPI = {
       .then(response => {
         return response.data
       })
+  },
+
+}
+
+export const loginAPI = {
+  loginUser(login, password, rememberMe = false) {
+    return instance.post(`login?login=${login}&password=${password}&rememberMe=${rememberMe}`)
+      .then(response => {
+        return response.data
+      })
   }
 }

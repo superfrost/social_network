@@ -1,5 +1,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { loginUser } from '../../redux/loginReducer'
+import Preloader from '../Common/Preloader/Preloader'
 
 const LoginForm = (props) => {
   return (
@@ -19,20 +22,41 @@ const LoginForm = (props) => {
     </form>
   )
 }
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
-const LoginReduxForm = reduxForm({
-  form: 'login'})(LoginForm)
-
-
-const Login = (props) => {
-  //debugger
-  const onSubmit = (formData) => {
-    console.log(formData); 
+class Login extends React.Component {
+  onSubmit = (formData) => {this.props.loginUser(formData)}
+  
+  render() {
+    return <div>
+        <h1>Login</h1>
+        {this.props.isFetching 
+        ? <Preloader/>
+        : <LoginReduxForm onSubmit={this.onSubmit}/>}
+      </div>
+    }
   }
-  return <div>
-      <h1>Login</h1>
-      <LoginReduxForm onSubmit={onSubmit}/>
-    </div>
-}
 
-export default Login
+// const Login = (props) => {
+//   const onSubmit = (formData) => {
+//     props.loginUser(formData);
+//   }
+//   return <div>
+//       <h1>Login</h1>
+//       {props.isFetching 
+//       ? <Preloader/>
+//       : <LoginReduxForm onSubmit={onSubmit}/>}
+//     </div>
+// }
+
+let mapStateToProps = (state) => ({
+  login: state.login.login,
+  password: state.login.password,
+  rememberMe: state.login.rememberMe,
+  user_id: state.login.user_id,
+  isFetching: state.login.isFetching,
+})
+
+export default connect(mapStateToProps, {
+  loginUser
+})(Login)
