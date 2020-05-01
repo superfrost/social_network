@@ -8,12 +8,12 @@ const Profile = (props) => {
   return (
     <div>
       <MyProfile 
-        state={props.state.myProfile} 
         myProfile={props.myProfile}
         status={props.status}
         updateStatus={props.updateStatus} />
       <CreatePostContainer/>
-      {/* <MyPosts state={props.state}/> */}
+      <MyPosts posts={props.profilePage.posts}
+        friends={props.profilePage.friends} />
     </div>
   );
 };

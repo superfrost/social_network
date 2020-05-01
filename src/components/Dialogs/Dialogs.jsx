@@ -1,19 +1,37 @@
 import React from "react";
-import { Redirect } from "react-router-dom"
 import styless from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import OneMessage from "./Message/Message";
+import { Field, reduxForm } from 'redux-form'
+import { FormControl } from "../Common/FormsControl/FormsControl";
+import { required, maxLengthCreator } from "../../utils/validation";
+
+const maxLength255 = maxLengthCreator(255)
+
+let DialogsForm = (props) => {
+  return (<div>
+    <form onSubmit={props.handleSubmit} >
+      <Field name="dialogTextarea"
+        typeField="textarea"
+        component={FormControl} 
+        className={styless.message_textarea_send} 
+        validate={[required, maxLength255]} 
+        />
+      <div>
+        <button type="submit" className={styless.newMessageButton}>Send</button>
+      </div>
+    </form>
+    </div>
+  )
+}
+
+DialogsForm = reduxForm({form: "dialogsForm"})(DialogsForm)
 
 const Dialogs = (props) => {
   
-  let addMessage = () => {
-    props.addMessage()
-  };
-
-  let OnChangeTextInTextarea = (event) => {
-    let text = event.target.value;
-    props.OnChangeTextInTextarea(text)
-  };
+  let onSubmitMessage = (value) => {
+    props.addMessage(value.dialogTextarea)
+  }
 
   let dialogElements = props.state.dialogsData.map((dialog) => (
     <DialogItem state={dialog} />
@@ -34,22 +52,11 @@ const Dialogs = (props) => {
         {dialogElements}
       </div>
       <div className={styless.messages}>
-        <div>
-          <textarea
-            onChange={OnChangeTextInTextarea}
-            className={styless.message_textarea_send}
-            id="newMessageArea"
-            value={props.state.newMessageText}
-          />
-          <br />
-          <button onClick={addMessage} className={styless.newMessageButton}>
-            Send
-          </button>
-        </div>
+        <DialogsForm onSubmit={onSubmitMessage}/>
         {messageElementsReverse}
       </div>
     </div>
-  );
+  )
 };
 
 export default Dialogs;

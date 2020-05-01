@@ -3,10 +3,8 @@ import styless from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import Friends from "./Friends/Friends";
 
-//console.log(styless)
-//console.log(`${styless.item} ${styless.active}`)
-
 const Navbar = (props) => {
+  //debugger
   return (
     <nav className={styless.nav}>
       <div className={styless.item}>
@@ -28,7 +26,7 @@ const Navbar = (props) => {
         <NavLink to='/users'activeClassName={styless.active}>Users</NavLink>
       </div>
       <div className="Friends">
-        <Friends state={props.state}/>
+        <Friends />
       </div>
     </nav>
   );

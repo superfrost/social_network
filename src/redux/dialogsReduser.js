@@ -1,5 +1,4 @@
 const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
-const NEW_MESSAGE_TEXT_ON_CHANGE = 'NEW-MESSAGE-TEXT-ON-CHANGE';
 
 let initialState = {
     messageData: [
@@ -62,7 +61,7 @@ const dialogsReduser = (state = initialState, action) => {
                 id: 17, 
                 person_id: 1, 
                 date: formatDate(now), 
-                message: state.newMessageText
+                message: action.message
             };
             return {
                 ...state,
@@ -70,23 +69,13 @@ const dialogsReduser = (state = initialState, action) => {
                 newMessageText: '',
             };
         }
-        case NEW_MESSAGE_TEXT_ON_CHANGE : {
-            return {
-                ...state,
-                newMessageText: action.text,
-            };
-        }
         default:
             return state;
     }
 };
 
-export const addMessageActionCreator = () => {
-    return { type: ADD_NEW_MESSAGE }
-};
-
-export const OnChangeTextInTextareaActionCreator = (text) => {
-    return { type: NEW_MESSAGE_TEXT_ON_CHANGE, text }
+export const addMessage = (message) => {
+    return { type: ADD_NEW_MESSAGE, message }
 };
 
 export default dialogsReduser;

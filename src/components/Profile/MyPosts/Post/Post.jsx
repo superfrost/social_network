@@ -21,7 +21,7 @@ const Post = (props) => {
                     {props.state.message}
                 </div>
                 <div className={styless.button_container}>
-                    <button className={styless.button}>💕{props.state.like_count}</button>
+                    <button className={styless.button}> <span>💕</span>{props.state.like_count}</button>
                     <button className={styless.button}>Share</button>
                 </div>
             </div>

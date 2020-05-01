@@ -39,7 +39,8 @@ class ProfileCotainer extends React.Component {
 let mapStateToProps = (state) => ({
   myProfile: state.profilePage.myProfile,
   profileIsFetching: state.profilePage.profileIsFetching,
-  status: state.profilePage.status
+  status: state.profilePage.status,
+  profilePage: state.profilePage,
 })
 
 export default compose(

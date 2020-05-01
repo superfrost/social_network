@@ -11,7 +11,7 @@ let initialState = {
     ]
 }
 
-const navbarReduser = (state = initialState, action) => {
+const navbarReduser = (state = initialState, action = 0 ) => {
 
     return state;
 }

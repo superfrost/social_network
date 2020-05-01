@@ -11,32 +11,19 @@ import ProfileCotainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 
-
 const App = (props) => {
-  //debugger;
-  let state = props.store.getState()
-
   return (
     <div className="app-wrapper">
       <HeaderContainer />
-      <Navbar 
-        state={state.navbar} 
-      />
+      <Navbar />
       <div className="app-wrapper-content">
-        <Route path="/dialogs"
-          render={() => <DialogsContainer/>}/>
-        <Route path="/profile/:user_id?"
-          render={() => <ProfileCotainer
-            state={state.profilePage}
-          />}
-        />
-        <Route path='/users'
-          render={() => <UsersContainer/>}/>
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path="/profile/:user_id?" render={() => <ProfileCotainer />} />
+        <Route path="/users" render={() => <UsersContainer />}/>
         <Route path="/news" component={News} />
         <Route path="/music" component={Music} />
         <Route path="/settings" component={Settings} />
-        <Route path='/login'
-          render={() => <Login/>}/>
+        <Route path="/login" render={() => <Login/>}/>
       </div>
     </div>
   );

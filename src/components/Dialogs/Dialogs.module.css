@@ -60,7 +60,7 @@
 }
 
 .one_message_content {
-    
+    color: #cacaca;
 }
 
 .time {
@@ -69,6 +69,7 @@
 
 .message_textarea_send {
     width: 100%;
+    height: 100px;
     margin: 5px 0;
     padding: 5px;
     border: solid white 1px;

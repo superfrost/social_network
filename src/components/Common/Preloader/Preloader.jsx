@@ -5,7 +5,7 @@ import preloader from './../../../asserts/img/loading1.svg'
 const Preloader = (props) => {
   return (
     <div>
-      <img className={styless.rotate} src={preloader} /> 
+      <img className={styless.rotate} src={preloader} alt="preloader" /> 
     </div>
   )
 }

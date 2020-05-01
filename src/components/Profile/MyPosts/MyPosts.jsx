@@ -4,15 +4,13 @@ import Post from './Post/Post'
 
 
 const MyPosts = (props) => {
-  let postsElements = props.state.posts.map(post => {
-    let posterName = props.state.friends[post.person_id - 1].name;
-    let photoSrc = props.state.friends[post.person_id - 1].photoSrc;
+  let postsElements = props.posts.map(post => {
+    let posterName = props.friends[post.person_id - 1].name;
+    let photoSrc = props.friends[post.person_id - 1].photoSrc;
       return <Post state={post} name={posterName} photoSrc={photoSrc}/>
   });
   // Reverse posts
   let postsElementsReverse = postsElements.slice().reverse();
-  //Add some logic with "UNSHIFT" insted of reverse
-  
   
   return (
     <div>
