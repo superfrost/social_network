@@ -13,28 +13,3 @@ export const FormControl = ({input, meta, ...props}) => {
     </div>
   )
 }
-
-export const Textarea = ({input, meta, ...props}) => {
-  const hasError = meta.touched && meta.error
-  return (
-    <div className={styless.formControl + " " + (hasError ? styless.error : "")}>
-      <div>
-        <textarea {...input} {...props} />
-      </div>
-      {hasError && <span>{meta.error}</span>}
-    </div>
-  )
-}
-
-export const Input = ({input, meta, ...props}) => {
-  debugger
-  const hasError = meta.touched && meta.error
-  return (
-    <div className={styless.formControl + " " + (hasError ? styless.error : "")}>
-      <div>
-        <input {...input} {...props} />
-      </div>
-      {hasError && <span>{meta.error}</span>}
-    </div>
-  )
-}
