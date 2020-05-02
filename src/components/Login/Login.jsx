@@ -1,10 +1,11 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { loginUser } from '../../redux/loginReducer'
+import { loginUser } from '../../redux/authReduser'
 import Preloader from '../Common/Preloader/Preloader'
 import { FormControl } from '../Common/FormsControl/FormsControl'
 import { required, maxLengthCreator } from '../../utils/validation'
+import { Redirect } from "react-router-dom"
 
 const maxLength20 = maxLengthCreator(20)
 
@@ -32,6 +33,9 @@ class Login extends React.Component {
   onSubmit = (formData) => {this.props.loginUser(formData)}
   
   render() {
+    if (this.props.isAuth) {
+      return <Redirect to={"/profile"} />
+    }
     return <div>
         <h1>Login</h1>
         {this.props.isFetching 
@@ -41,24 +45,13 @@ class Login extends React.Component {
     }
   }
 
-// const Login = (props) => {
-//   const onSubmit = (formData) => {
-//     props.loginUser(formData);
-//   }
-//   return <div>
-//       <h1>Login</h1>
-//       {props.isFetching 
-//       ? <Preloader/>
-//       : <LoginReduxForm onSubmit={onSubmit}/>}
-//     </div>
-// }
-
 let mapStateToProps = (state) => ({
-  login: state.login.login,
-  password: state.login.password,
-  rememberMe: state.login.rememberMe,
-  user_id: state.login.user_id,
-  isFetching: state.login.isFetching,
+  id: state.auth.id,
+  email: state.auth.email,
+  login: state.auth.login,
+  isAuth: state.auth.isAuth,
+  userPhoto: state.auth.userPhoto,
+  rememberMe: state.auth.rememberMe,
 })
 
 export default connect(mapStateToProps, {

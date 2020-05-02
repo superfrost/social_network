@@ -1,9 +1,11 @@
 import * as axios from "axios";
+import { KEY } from "../env/env";
 
 const instance = axios.create({
   baseURL: "http://localhost:5000/",
   //withCredentials: true,
   //headers: {"API-KEY": "12312-1312-1231"}
+  headers: {"Authorization": `Bearer ${KEY}`}
 }) 
 
 export const usersAPI = {
@@ -62,14 +64,29 @@ export const authentificateAPI = {
         return response.data
       })
   },
-
-}
-
-export const loginAPI = {
   loginUser(login, password, rememberMe = false) {
     return instance.post(`login?login=${login}&password=${password}&rememberMe=${rememberMe}`)
       .then(response => {
         return response.data
       })
+  },
+  logOut() {
+    return instance.delete(`logout`)
+      .then(response => {
+        return response.data
+      })
   }
 }
+
+export const loginAPI = {
+  loginUser(login, password, rememberMe = false) {
+    console.warn("Deprecated method. For Login please use authentificateAPI.loginUser")
+    return authentificateAPI.loginUser(login, password, rememberMe)
+  },
+  logOut() {
+    console.warn("Deprecated method. For logout please use authentificateAPI.logOut")
+    return authentificateAPI.logOut()
+  }
+}
+
+

@@ -3,7 +3,6 @@ import styless from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
-  //debugger
   return (
     <header className={styless.header}>
       <div>
@@ -16,10 +15,15 @@ const Header = (props) => {
         <input className="Search" placeholder="Search"></input>
         <button className="Button_Search">Search</button>
       </div>
+      <div>
+        {props.isAuth 
+          ? <button onClick={props.logoutUser}>Logout</button> 
+          : null}
+      </div>
       <div className={styless.loginBlock}>
         {
-          props.isAuth ? 
-          <>
+          props.isAuth 
+          ? <>
             <img src={props.userPhoto} alt="user_logo"/>
             {props.login}
           </>

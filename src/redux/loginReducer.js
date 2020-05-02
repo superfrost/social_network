@@ -48,6 +48,7 @@ export const loginUser = (LoginObj) => (dispatch) => {
   loginAPI.loginUser(LoginObj.login, LoginObj.password, LoginObj.rememberMe)
     .then(data => {
       if (data.resultCode === 0) {
+        
         dispatch(setUserId(data.user_id))
       }
       dispatch(setIsFetching(false));
