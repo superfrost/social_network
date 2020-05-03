@@ -5,8 +5,17 @@ const instance = axios.create({
   baseURL: "http://localhost:5000/",
   //withCredentials: true,
   //headers: {"API-KEY": "12312-1312-1231"}
-  headers: {"Authorization": `Bearer ${KEY}`}
+  //headers: {"Authorization": `Bearer ${""}`}
 }) 
+
+//? axios.defaults.headers.common['Authorization'] = `Bearer ${KEY}`
+
+//? const axiosInstance = axios.create()
+//? axiosInstance.defaults.headers['Authorization'] = `Bearer ${KEY}` 
+
+export const setHeaders = (token = null) => {
+  instance.defaults.headers['Authorization'] = `Bearer ${token}`
+}
 
 export const usersAPI = {
   getUsers(pageSize = 5, currentPage = 1)  {
@@ -58,7 +67,8 @@ export const followAPI = {
 }
 
 export const authentificateAPI = {
-  authentificateMe() {
+  authentificateMe(token) {
+    setHeaders(token)
     return instance.get(`auth/me`)
       .then(response => {
         return response.data
@@ -73,6 +83,7 @@ export const authentificateAPI = {
   logOut() {
     return instance.delete(`logout`)
       .then(response => {
+        setHeaders()
         return response.data
       })
   }

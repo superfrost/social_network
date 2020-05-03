@@ -10,6 +10,7 @@ let initialState = {
   userPhoto: null,
   rememberMe: false,
   password: null,
+  token: null,
 };
 
 const authReduser = (state = initialState, action) => {
@@ -26,23 +27,23 @@ const authReduser = (state = initialState, action) => {
   }
 };
 
-export const setAuthUserData = (id, email, login, userPhoto, isAuth) => ({
+export const setAuthUserData = (id, email, login, userPhoto = null, isAuth, token = null) => ({
   type: SET_USER_DATA,
-  payload: { id, email, login, userPhoto, isAuth },
+  payload: { id, email, login, userPhoto, isAuth, token },
 });
 
-export const getAuthUserData = () => {
+export const getAuthUserData = (token) => {
   return (dispatch) => {
-    authentificateAPI.authentificateMe()
+    authentificateAPI.authentificateMe(token)
       .then((data) => {
+        debugger
         if (data.resultCode === 0) {
           let { id, email, login } = data.data;
-          let userPhoto = null;
-          dispatch(setAuthUserData(id, email, login, userPhoto, true));
+          dispatch(setAuthUserData(id, email, login, null, true, token));
+          
           usersAPI.getUserProfile(id)
           .then((data) => {
-            userPhoto = data.photo_src;
-            dispatch(setAuthUserData(id, email, login, userPhoto, true));
+            dispatch(setAuthUserData(id, email, login, data.photo_src, true, token));
           })
         }
       })
@@ -52,8 +53,9 @@ export const getAuthUserData = () => {
 export const loginUser = (LoginObj) => (dispatch) => {
   authentificateAPI.loginUser(LoginObj.login, LoginObj.password, LoginObj.rememberMe, true)
     .then(data => {
+      debugger
       if (data.resultCode === 0) {
-        dispatch(getAuthUserData())
+        dispatch(getAuthUserData(data.token))
       }
     })
 }
