@@ -54,3 +54,8 @@
 .loginBlock img {
   height: 50px;
 }
+
+.loginButton {
+  color: white;
+  text-decoration: none;
+}

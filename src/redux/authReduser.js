@@ -17,7 +17,6 @@ let initialState = {
 const authReduser = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA: {
-      //debugger
       return {
         ...state,
         ...action.payload,
@@ -33,11 +32,9 @@ export const setAuthUserData = (id, email, login, userPhoto = null, isAuth, toke
   payload: { id, email, login, userPhoto, isAuth, token },
 });
 
-export const getAuthUserData = (token) => {
-  debugger
-  return (dispatch) => {
-    authentificateAPI.authentificateMe(token)
-      .then((data) => {
+export const getAuthUserData = (token = null) => (dispatch) => {
+  return authentificateAPI.authentificateMe(token)
+    .then((data) => {
         if (data.resultCode === 0) {
           let { id, email, login } = data.data;
           dispatch(setAuthUserData(id, email, login, null, true, token));
@@ -46,23 +43,16 @@ export const getAuthUserData = (token) => {
           .then((data) => {
             dispatch(setAuthUserData(id, email, login, data.photo_src, true, token));
           })
-        }
+        } 
       })
   }
-}
 
 export const loginUser = (LoginObj) => (dispatch) => {
-
-  
-  // let action = stopSubmit("login", {_error: "Incorrect Login or Password"})
-  // dispatch(action)
-
-  authentificateAPI.loginUser(LoginObj.login, LoginObj.password, LoginObj.rememberMe, true)
+  return authentificateAPI.loginUser(LoginObj.login, LoginObj.password, LoginObj.rememberMe, true)
     .then(data => {
       if (data.resultCode === 0) {
         dispatch(getAuthUserData(data.token))
       } else {
-        debugger
         let action = stopSubmit("login", {_error: data.error})
         dispatch(action)
       }
@@ -70,7 +60,7 @@ export const loginUser = (LoginObj) => (dispatch) => {
 }
 
 export const logoutUser = (LoginObj) => (dispatch) => {
-  authentificateAPI.logOut()
+  return authentificateAPI.logOut()
     .then(data => {
       if (data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, null, false));

@@ -109,7 +109,11 @@ export const getStatus = (user_id) => {
     return (dispatch) => {
         profileAPI.getStatus(user_id)
             .then(data => {
-                dispatch(setStatus(data.status.status))
+                if(!data.status) {
+                    dispatch(setStatus(null))
+                } else {
+                    dispatch(setStatus(data.status.status))
+                }
         })
     }
 }

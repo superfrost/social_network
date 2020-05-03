@@ -12,7 +12,11 @@ class ProfileCotainer extends React.Component {
   componentDidMount() {
     let user_id = this.props.match.params.user_id
     if (!user_id) {
+      debugger
       user_id = this.props.authUserId
+      if(!user_id) {
+        this.props.history.push("/login")
+      }
     }
     
     this.props.getProfile(user_id)
@@ -54,5 +58,5 @@ export default compose(
     updateStatus,
   }),
   withRouter,
-  withAuthRedirect
+  //withAuthRedirect
 )(ProfileCotainer);

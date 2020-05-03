@@ -3,7 +3,6 @@ import styless from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
-  debugger
   return (
     <header className={styless.header}>
       <div>
@@ -28,7 +27,7 @@ const Header = (props) => {
             <img src={props.userPhoto} alt="user_logo"/>
             {props.login}
           </>
-          : <NavLink to={"/login"}>Login</NavLink>
+          : <NavLink to={"/login"} className={styless.loginButton}>Login</NavLink>
         }
       </div>
     </header>
