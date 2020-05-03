@@ -9,3 +9,12 @@
 {
   color: red;
 }
+
+.formSumError
+{
+  border: red solid 2px;
+  border-radius: 5px;
+  padding: 5px;
+  width: 160px;
+  color: red;
+}

@@ -6,6 +6,7 @@ import Preloader from '../Common/Preloader/Preloader'
 import { FormControl } from '../Common/FormsControl/FormsControl'
 import { required, maxLengthCreator } from '../../utils/validation'
 import { Redirect } from "react-router-dom"
+import styless from './../Common/FormsControl/FormControl.module.css'
 
 const maxLength20 = maxLengthCreator(20)
 
@@ -24,6 +25,11 @@ const LoginForm = (props) => {
       <div>
         <button type="submit">Submit</button>
       </div>
+      {props.error 
+      ? <div className={styless.formSumError}>
+          {props.error}
+        </div>
+      : null}
     </form>
   )
 }

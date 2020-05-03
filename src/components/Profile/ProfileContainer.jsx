@@ -11,14 +11,15 @@ import { compose } from 'redux'
 class ProfileCotainer extends React.Component {
   componentDidMount() {
     let user_id = this.props.match.params.user_id
-    if (!user_id) { user_id = 1 }
+    if (!user_id) {
+      user_id = this.props.authUserId
+    }
     
     this.props.getProfile(user_id)
     this.props.getStatus(user_id)      
   }
 
   render() {
-    //debugger
     if (!this.props.myProfile) {
       return <Preloader/>
     }
@@ -41,6 +42,8 @@ let mapStateToProps = (state) => ({
   profileIsFetching: state.profilePage.profileIsFetching,
   status: state.profilePage.status,
   profilePage: state.profilePage,
+  authUserId: state.auth.id,
+  isAuth: state.auth.isAuth
 })
 
 export default compose(

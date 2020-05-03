@@ -3,6 +3,7 @@ import styless from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
+  debugger
   return (
     <header className={styless.header}>
       <div>

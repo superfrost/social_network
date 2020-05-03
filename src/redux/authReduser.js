@@ -1,4 +1,5 @@
 import { authentificateAPI, usersAPI } from "../api/api";
+import { stopSubmit } from "redux-form";
 
 const SET_USER_DATA = "SET_USER_DATA";
 
@@ -33,10 +34,10 @@ export const setAuthUserData = (id, email, login, userPhoto = null, isAuth, toke
 });
 
 export const getAuthUserData = (token) => {
+  debugger
   return (dispatch) => {
     authentificateAPI.authentificateMe(token)
       .then((data) => {
-        debugger
         if (data.resultCode === 0) {
           let { id, email, login } = data.data;
           dispatch(setAuthUserData(id, email, login, null, true, token));
@@ -51,11 +52,19 @@ export const getAuthUserData = (token) => {
 }
 
 export const loginUser = (LoginObj) => (dispatch) => {
+
+  
+  // let action = stopSubmit("login", {_error: "Incorrect Login or Password"})
+  // dispatch(action)
+
   authentificateAPI.loginUser(LoginObj.login, LoginObj.password, LoginObj.rememberMe, true)
     .then(data => {
-      debugger
       if (data.resultCode === 0) {
         dispatch(getAuthUserData(data.token))
+      } else {
+        debugger
+        let action = stopSubmit("login", {_error: data.error})
+        dispatch(action)
       }
     })
 }
