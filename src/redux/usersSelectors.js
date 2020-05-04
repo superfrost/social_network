@@ -1,6 +1,12 @@
-export const getUsersSelector = (state) => {
-  return state.usersPage.users.filter(u => u)
+import { createSelector } from 'reselect'
+
+const getUsersSelector = (state) => {
+  return state.usersPage.users
 }
+
+export const getUsersSel = createSelector(getUsersSelector, (users) => {
+  return users.filter(u => u)
+})
 
 export const getPageSize = (state) => {
   return state.usersPage.pageSize
