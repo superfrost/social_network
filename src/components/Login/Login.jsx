@@ -12,15 +12,17 @@ const maxLength20 = maxLengthCreator(20)
 
 const LoginForm = (props) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={props.handleSubmit} className={styless.loginComponent2}>
+      <h1>Login</h1>
       <div>
-        <Field component={FormControl} name="login" validate={[required, maxLength20]} type="text" typeField="input" placeholder="Login" required/>
+        <Field component={FormControl} name="login" validate={[required, maxLength20]} type="text" typeField="input" placeholder="Login" />
       </div>
       <div>
-        <Field component={FormControl} name="password" validate={[required, maxLength20]} type="password" typeField="input" placeholder="Password" required/>
+        <Field component={FormControl} name="password" validate={[required, maxLength20]} type="password" typeField="input" placeholder="Password" />
       </div>
       <div>
         <Field component="input" name="rememberMe" type="checkbox" />
+        <label htmlFor="rememberMe">rememberMe</label>
       </div>
       <div>
         <button type="submit">Submit</button>
@@ -42,11 +44,12 @@ class Login extends React.Component {
     if (this.props.isAuth) {
       return <Redirect to={"/profile"} />
     }
-    return <div>
-        <h1>Login</h1>
+    return <div className={styless.loginComponent}>
+      <div>
         {this.props.isFetching 
         ? <Preloader/>
         : <LoginReduxForm onSubmit={this.onSubmit}/>}
+      </div>
       </div>
     }
   }

@@ -12,7 +12,6 @@ class ProfileCotainer extends React.Component {
   componentDidMount() {
     let user_id = this.props.match.params.user_id
     if (!user_id) {
-      debugger
       user_id = this.props.authUserId
       if(!user_id) {
         this.props.history.push("/login")
@@ -24,6 +23,7 @@ class ProfileCotainer extends React.Component {
   }
 
   render() {
+    console.log("render Profile")
     if (!this.props.myProfile) {
       return <Preloader/>
     }
@@ -41,14 +41,16 @@ class ProfileCotainer extends React.Component {
   }
 };
 
-let mapStateToProps = (state) => ({
+let mapStateToProps = (state) => {
+  console.log("mapStateToPropsProfile")
+  return {
   myProfile: state.profilePage.myProfile,
   profileIsFetching: state.profilePage.profileIsFetching,
   status: state.profilePage.status,
   profilePage: state.profilePage,
   authUserId: state.auth.id,
   isAuth: state.auth.isAuth
-})
+}}
 
 export default compose(
   connect(mapStateToProps, {

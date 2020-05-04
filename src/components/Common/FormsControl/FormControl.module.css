@@ -1,6 +1,16 @@
+.formControl input,
+.formControl textarea 
+{
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .formControl.error input,
 .formControl.error textarea 
 {
+  margin: 5px;
+  padding: 5px;
   border: red solid 2px;
   border-radius: 5px;
 }
@@ -17,4 +27,16 @@
   padding: 5px;
   width: 160px;
   color: red;
+}
+
+.loginComponent 
+{
+  margin: auto auto;
+}
+
+.loginComponent2, h1 
+{
+  width: auto;
+  text-align: center;
+  color: white;
 }
