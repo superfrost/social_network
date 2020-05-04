@@ -20,6 +20,7 @@
   }
 
   .my_event_container {
+    color: white;
     margin-left: 5px;
     /* border: solid; */
     width: 100%;
@@ -28,4 +29,8 @@
   .my_event_user_name {
     font-weight: bold;
     margin-bottom: 5px;
+  }
+
+  .profileStatusDiv {
+    color: white;
   }

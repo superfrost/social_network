@@ -1,7 +1,8 @@
 import React from "react";
 import styless from "./MyProfile.module.css";
 import no_avatar from "../../../asserts/img/no_ava.png";
-import ProfileStatus from "./ProfileStatus";
+//import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const MyProfile = (props) => {
   //debugger
@@ -23,7 +24,7 @@ const MyProfile = (props) => {
         </div>
         <div className={styless.my_event_container}>
           <div className={styless.my_event_user_name}>{props.myProfile.name}</div>
-          <ProfileStatus 
+          <ProfileStatusWithHooks
             status={props.status}
             updateStatus={props.updateStatus}
             />
