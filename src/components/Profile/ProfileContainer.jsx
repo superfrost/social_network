@@ -23,7 +23,6 @@ class ProfileCotainer extends React.Component {
   }
 
   render() {
-    console.log("render Profile")
     if (!this.props.myProfile) {
       return <Preloader/>
     }
@@ -42,7 +41,6 @@ class ProfileCotainer extends React.Component {
 };
 
 let mapStateToProps = (state) => {
-  console.log("mapStateToPropsProfile")
   return {
   myProfile: state.profilePage.myProfile,
   profileIsFetching: state.profilePage.profileIsFetching,

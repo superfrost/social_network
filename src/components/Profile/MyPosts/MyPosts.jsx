@@ -3,7 +3,7 @@ import styless from './MyPosts.module.css'
 import Post from './Post/Post'
 
 
-const MyPosts = (props) => {
+const MyPosts1 = (props) => {
   let postsElements = props.posts.map(post => {
     let posterName = props.friends[post.person_id - 1].name;
     let photoSrc = props.friends[post.person_id - 1].photoSrc;
@@ -11,7 +11,8 @@ const MyPosts = (props) => {
   });
   // Reverse posts
   let postsElementsReverse = postsElements.slice().reverse();
-  
+  // console.log("rerender myPosts");
+
   return (
     <div>
       <div className={styless.posts}>
@@ -20,5 +21,7 @@ const MyPosts = (props) => {
     </div>
   )
 }
+
+const MyPosts = React.memo(MyPosts1)
 
 export default MyPosts

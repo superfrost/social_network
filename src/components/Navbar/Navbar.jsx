@@ -2,6 +2,7 @@ import React from "react";
 import styless from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import Friends from "./Friends/Friends";
+import { connect } from "react-redux";
 
 const Navbar = (props) => {
   //debugger
@@ -25,11 +26,19 @@ const Navbar = (props) => {
       <div className={styless.item}>
         <NavLink to='/users'activeClassName={styless.active}>Users</NavLink>
       </div>
-      <div className="Friends">
-        <Friends />
+      {props.isAuth
+      ? <div className="Friends">
+        <Friends friends={props.friends} />
       </div>
+      : null}
     </nav>
   );
 };
 
-export default Navbar;
+
+let mapStateToProps = (state) => ({
+  friends: state.navbar.friends,
+  isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {})(Navbar);

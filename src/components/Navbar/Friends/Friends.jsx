@@ -1,6 +1,5 @@
 import React from "react";
 import styless from "./Friends.module.css";
-import { connect } from "react-redux";
 
 const Friends = (props) => {
   let friendsItems = props.friends.map((friend) => (
@@ -20,8 +19,4 @@ const Friends = (props) => {
   );
 };
 
-let mapStateToProps = (state) => ({
-  friends: state.navbar.friends
-})
-
-export default connect(mapStateToProps, {})(Friends);
+export default Friends

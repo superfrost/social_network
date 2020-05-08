@@ -68,7 +68,8 @@ export const followAPI = {
 
 export const authentificateAPI = {
   authentificateMe(token) {
-    setHeaders(token)
+    let tokennn = localStorage.getItem("access_token") ? localStorage.getItem("access_token") : token
+    setHeaders(tokennn)
     return instance.get(`auth/me`)
       .then(response => {
         return response.data
@@ -81,6 +82,7 @@ export const authentificateAPI = {
       })
   },
   logOut() {
+    localStorage.removeItem("access_token")
     return instance.delete(`logout`)
       .then(response => {
         setHeaders()
