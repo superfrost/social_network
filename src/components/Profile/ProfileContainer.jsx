@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import { connect } from 'react-redux'
 import { setProfileIsFetching, getProfile, 
-  getStatus, updateStatus } from './../../redux/profileReduser'
+  getStatus, updateStatus, getPosts } from './../../redux/profileReduser'
 import { withRouter } from "react-router-dom"
 import Preloader from "../Common/Preloader/Preloader";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
@@ -19,7 +19,10 @@ class ProfileCotainer extends React.Component {
     }
     
     this.props.getProfile(user_id)
-    this.props.getStatus(user_id)      
+    this.props.getStatus(user_id)
+    if (user_id) {
+    this.props.getPosts(user_id)
+    }   
   }
 
   render() {
@@ -56,7 +59,8 @@ export default compose(
     getProfile,
     getStatus,
     updateStatus,
+    getPosts
   }),
   withRouter,
-  //withAuthRedirect
+  withAuthRedirect
 )(ProfileCotainer);

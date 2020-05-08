@@ -1,5 +1,4 @@
 import * as axios from "axios";
-import { KEY } from "../env/env";
 
 const instance = axios.create({
   baseURL: "http://localhost:5000/",
@@ -49,6 +48,12 @@ export const profileAPI = {
       return response.data
     })
   },
+  getUserPosts(user_id) {
+    return instance.get(`posts/${user_id}`)
+    .then(response => {
+      return response.data
+    })
+  },
 }
 
 export const followAPI = {
@@ -73,11 +78,15 @@ export const authentificateAPI = {
     return instance.get(`auth/me`)
       .then(response => {
         return response.data
-      })
+      }, error => { 
+        debugger
+        return error.response.data})
   },
   loginUser(login, password, rememberMe = false) {
     return instance.post(`login?login=${login}&password=${password}&rememberMe=${rememberMe}`)
       .then(response => {
+        //debugger
+        localStorage.setItem("access_token", response.data.token)
         return response.data
       })
   },

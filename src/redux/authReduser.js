@@ -1,8 +1,6 @@
 import { authentificateAPI, usersAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
-import LocalStorageService from "../env/LocalStorage";
 
-const localStorageService = LocalStorageService.getService();
 const SET_USER_DATA = "SET_USER_DATA";
 
 let initialState = {
@@ -45,7 +43,7 @@ export const getAuthUserData = (token = null) => (dispatch) => {
           .then((data) => {
             dispatch(setAuthUserData(id, email, login, data.photo_src, true, token));
           })
-        } 
+        }
       })
   }
 
@@ -53,8 +51,6 @@ export const loginUser = (LoginObj) => (dispatch) => {
   return authentificateAPI.loginUser(LoginObj.login, LoginObj.password, LoginObj.rememberMe, true)
     .then(data => {
       if (data.resultCode === 0) {
-        let newToken = localStorageService.setToken(data.token)
-        console.log(localStorageService.getAccessToken())
         dispatch(getAuthUserData(data.token))
       } else {
         let action = stopSubmit("login", {_error: data.error})
