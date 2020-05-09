@@ -1,6 +1,7 @@
 import React from "react";
 import styless from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import Noavatar from "../Common/NoAvatar/NoAvatar";
 
 const Header = (props) => {
   return (
@@ -24,8 +25,10 @@ const Header = (props) => {
         {
           props.isAuth 
           ? <>
-            <img src={props.userPhoto} alt="user_logo"/>
-            {props.login}
+            {props.userPhoto 
+            ? <img src={props.userPhoto} alt="user_logo"/>
+            : <Noavatar />}
+            <span>{props.login}</span>
           </>
           : <NavLink to={"/login"} className={styless.loginButton}>Login</NavLink>
         }

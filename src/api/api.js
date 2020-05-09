@@ -33,6 +33,7 @@ export const profileAPI = {
   getUserProfile(user_id) {
     return instance.get(`profile/${user_id}`)
     .then(response => {
+      debugger
       return response.data
     })
   },
@@ -54,6 +55,12 @@ export const profileAPI = {
       return response.data
     })
   },
+  sendUserPost(user_id, post) {
+    return instance.post(`posts/`, {user_id, post})
+    .then(response => {
+      return response.data
+    })
+  }
 }
 
 export const followAPI = {
@@ -79,13 +86,11 @@ export const authentificateAPI = {
       .then(response => {
         return response.data
       }, error => { 
-        debugger
         return error.response.data})
   },
   loginUser(login, password, rememberMe = false) {
     return instance.post(`login?login=${login}&password=${password}&rememberMe=${rememberMe}`)
       .then(response => {
-        //debugger
         localStorage.setItem("access_token", response.data.token)
         return response.data
       })

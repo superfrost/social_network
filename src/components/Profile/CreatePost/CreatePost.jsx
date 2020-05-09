@@ -29,9 +29,8 @@ let CreatePostForm = (props) => {
 CreatePostForm = reduxForm({form: "postsForm"})(CreatePostForm)
 
 const CreatePost = (props) => {
-
   let addNewPost = (value) => {
-    props.addPost(value.newPostTextarea);
+    props.sendPost(props.user_id, value.newPostTextarea);
   };
 
   return <CreatePostForm onSubmit={addNewPost}/>

@@ -37,7 +37,7 @@ const Navbar = (props) => {
 
 
 let mapStateToProps = (state) => ({
-  friends: state.navbar.friends,
+  friends: state.profilePage.friends,
   isAuth: state.auth.isAuth
 })
 
