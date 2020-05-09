@@ -3,6 +3,7 @@ import styless from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import Friends from "./Friends/Friends";
 import { connect } from "react-redux";
+import { getFriends } from "../../redux/profileReduser";
 
 const Navbar = (props) => {
   //debugger
@@ -28,17 +29,22 @@ const Navbar = (props) => {
       </div>
       {props.isAuth
       ? <div className="Friends">
-        <Friends friends={props.friends} />
+        <Friends friends={props.friends} 
+          getFriends={props.getFriends}
+          myProfile={props.myProfile}
+          user_id={props.user_id}
+          />
       </div>
       : null}
     </nav>
   );
 };
 
-
 let mapStateToProps = (state) => ({
   friends: state.profilePage.friends,
-  isAuth: state.auth.isAuth
+  myProfile: state.profilePage.myProfile,
+  isAuth: state.auth.isAuth,
+  user_id: state.auth.id
 })
 
-export default connect(mapStateToProps, {})(Navbar);
+export default connect(mapStateToProps, {getFriends})(Navbar);

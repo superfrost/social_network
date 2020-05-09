@@ -33,7 +33,6 @@ export const profileAPI = {
   getUserProfile(user_id) {
     return instance.get(`profile/${user_id}`)
     .then(response => {
-      debugger
       return response.data
     })
   },
@@ -58,6 +57,13 @@ export const profileAPI = {
   sendUserPost(user_id, post) {
     return instance.post(`posts/`, {user_id, post})
     .then(response => {
+      return response.data
+    })
+  },
+  getdUserFriends(str_users_id) {
+    return instance.post("friends/", {friends: str_users_id})
+    .then(response => {
+      debugger
       return response.data
     })
   }

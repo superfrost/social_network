@@ -46,27 +46,15 @@ let initialState = {
 const dialogsReduser = (state = initialState, action) => {
     switch (action.type) {
         case ADD_NEW_MESSAGE: {
-            let now = new Date()
-            let formatDate = (date) => {
-                return date.toLocaleString('us', {
-                    day:   '2-digit',
-                    month: '2-digit',
-                    year:  '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
-                });
-            }
             let newMessage = {
                 id: 17, 
                 person_id: 1, 
-                date: formatDate(now), 
+                date: "2020-05-09 12:00:00", 
                 message: action.message
             };
             return {
                 ...state,
                 messageData: [...state.messageData, newMessage],
-                newMessageText: '',
             };
         }
         default:

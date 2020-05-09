@@ -1,6 +1,6 @@
 import { authentificateAPI, usersAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
-import { setUserProfile } from "./profileReduser";
+import { setUserProfile, getFriends } from "./profileReduser";
 
 const SET_USER_DATA = "SET_USER_DATA";
 
@@ -43,9 +43,10 @@ export const getAuthUserData = (token = null) => (dispatch) => {
           usersAPI.getUserProfile(id)
           .then((data) => {
             dispatch(setAuthUserData(id, email, login, data.photo_src, true, token));
-            debugger
             dispatch(setUserProfile(data))
+             dispatch(getFriends(data.friends))
           })
+          .then()
         }
       })
   }
