@@ -1,11 +1,14 @@
 import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
+const DELETE_POST = "DELETE_POST";
+
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_PROFILE_IS_FETCHING = "SET_PROFILE_IS_FETCHING";
 const SET_STATUS = "SET_STATUS";
 const SET_USER_POSTS = "SET_USER_POSTS";
 const SET_USER_FRIENDS = "SET_USER_FRIENDS";
+
 
 let initialState = {
   posts: [],
@@ -37,6 +40,12 @@ const profileReduser = (state = initialState, action) => {
       return {
         ...state,
         posts: [...state.posts, newPost],
+      };
+    }
+    case DELETE_POST: {
+      return {
+        ...state,
+        posts: state.posts.filter(p => p.id != action.post_id),
       };
     }
     case SET_USER_PROFILE: {
@@ -77,6 +86,11 @@ const profileReduser = (state = initialState, action) => {
 export const addPost = (postObj) => {
   return { type: ADD_POST, postObj };
 };
+
+export const deletePost = (post_id) => {
+  return { type: DELETE_POST, post_id };
+};
+
 
 export const setUserProfile = (profile) => {
   return { type: SET_USER_PROFILE, profile };
